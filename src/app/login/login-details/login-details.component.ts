@@ -34,7 +34,6 @@ export class LoginDetailsComponent implements OnInit {
 
   //submit Event Emitter to pass form values to parent component
   onSubmit() {
-
     
     this.formSubmit.emit(this.form.value);
   }

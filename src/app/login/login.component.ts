@@ -41,7 +41,7 @@ export class LoginComponent implements OnInit {
   public errorsArray : string[] = [];
 
   //form to pass into login-details
-  private form: FormGroup;
+  public form: FormGroup;
 
   //container for controls which are generated dynamicly inside forms
   public controls : any;
@@ -49,21 +49,21 @@ export class LoginComponent implements OnInit {
   //Loign Model
   public loginModel: any;
   //form array
-  private formArray : FormArray;
+  public formArray : FormArray;
 
   //placeholder for loading bar
-  private loadBar: boolean;
+  public loadBar: boolean;
 
   constructor(
     public accountService: AccountService,
-    private formControlService : FormControlService,
+    public formControlService : FormControlService,
     public utilityService: UtilityService,
-    private _router :Router,
-    private toasterService: ToasterService,
-    private  vcRef  : ViewContainerRef,
-    private authService :AuthTokenService,
-    private snackBar: MatSnackBar,
-    private dialogService :DialogAppService
+    public _router :Router,
+    public toasterService: ToasterService,
+    public  vcRef  : ViewContainerRef,
+    public authService :AuthTokenService,
+    public snackBar: MatSnackBar,
+    public dialogService :DialogAppService
   ) {
    
   }
@@ -104,7 +104,7 @@ export class LoginComponent implements OnInit {
     this.form = this.formControlService.toControlGroup(this.controls); 
   }
 
-  login(model: LoginModel ): void{
+  public login(model? : LoginModel ): void{
     this.errorsArray = [];
    
     this.dialogService.openDialog();
@@ -139,7 +139,7 @@ export class LoginComponent implements OnInit {
     * External Event
     * @param event 
     */
-    private externalLogin() : void
+    public externalLogin() : void
     {
         
     }

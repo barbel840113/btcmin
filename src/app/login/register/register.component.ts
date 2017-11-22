@@ -29,6 +29,7 @@ export class RegisterComponent implements OnInit {
   public btnSubmit : string;
   //public controls to store all element in dynamic form
   public registerFormControlsContainer: any;
+  public formClass: any = '';
 
   constructor(
     public router: Router,

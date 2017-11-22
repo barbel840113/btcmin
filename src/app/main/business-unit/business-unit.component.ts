@@ -171,7 +171,7 @@ export class BusinessUnitComponent implements OnInit {
   /**
    * Create Business Unit
    */
-  public onSubmitBusinessUnit()
+  public onSubmit()
   {
        //check for value
        let model = this.businessUnitForm.value;
@@ -196,6 +196,9 @@ export class BusinessUnitComponent implements OnInit {
         });
        }
   }
+
+
+
 
   
 

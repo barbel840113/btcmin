@@ -22,40 +22,40 @@ import { UserService} from '../../services/users/user.service';
 export class HeaderAdminComponent implements OnInit, OnDestroy {
 
   //timer to be subuscribe
-  private timer: any;
-  private dark = false;
+  public timer: any;
+  public dark = false;
   
 
   public timerSubscription$ : Observable<any>;
   public timer$ :any;
 
   //shor or hide
-  private shorOrHide: any;
+  public shorOrHide: any;
 
   //username
-  private username: any;
-  private userNameSubscription$: any;
+  public username: any;
+  public userNameSubscription$: any;
 
   //subscribe profile information
-  private profileSubscribe$ : any;
+  public profileSubscribe$ : any;
 
-  private roleSubscription$ : any;
-  private roleUserName: any
+  public roleSubscription$ : any;
+  public roleUserName: any
 
   @Output("toggleSideBar") toogleSideBar : EventEmitter<any> = new EventEmitter();
 
   //time subscription
-  private dateTimeValue: any
+  public dateTimeValue: any
 
   constructor(
-    private _accountService: AccountService,
-    private _applicationService: ApplicationService,
-    private cd: ChangeDetectorRef,
-    private router: Router,    
-    private _element: ElementRef,
-    private _renderer: Renderer2,
-    private _overlayContainer: OverlayContainer,
-    private _userService :UserService
+    public _accountService: AccountService,
+    public _applicationService: ApplicationService,
+    public cd: ChangeDetectorRef,
+    public router: Router,    
+    public _element: ElementRef,
+    public _renderer: Renderer2,
+    public _overlayContainer: OverlayContainer,
+    public _userService :UserService
   ) {
     this.shorOrHide = false;
    
@@ -112,7 +112,7 @@ export class HeaderAdminComponent implements OnInit, OnDestroy {
     this._accountService.logout();
   }
 
-  private openSideBar()
+  public openSideBar()
   {
     this.toogleSideBar.emit(true);
   }

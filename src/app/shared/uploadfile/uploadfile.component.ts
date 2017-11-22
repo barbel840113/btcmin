@@ -9,7 +9,7 @@ export class UploadfileComponent implements OnInit {
 
   constructor() { }
 
-  private fileList: any = [];
+  public fileList: any = [];
 
   ngOnInit() {
   }
