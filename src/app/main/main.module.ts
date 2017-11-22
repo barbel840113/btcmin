@@ -24,6 +24,8 @@ import { BusinessUnitComponent } from './business-unit/business-unit.component';
 import { MessageFormComponent } from '../shared/message-form/message-form.component';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
+import {FlexLayoutModule} from "@angular/flex-layout";
+
 
 @NgModule({
   imports: [
@@ -33,6 +35,7 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
     JsonpModule,
     SharedModule,
     PipesModule,
+    FlexLayoutModule,
     MatHelpModule,
     NgxDatatableModule
   //  SidebarModule.forRoot(),

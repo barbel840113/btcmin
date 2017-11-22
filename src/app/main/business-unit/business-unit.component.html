@@ -1,79 +1,77 @@
-<div class="flex-container"
-fxLayout="row" 
-fxLayout.xs="column"
-fxLayoutAlign="center center"
-fxLayoutAlign.xs="start">
-  <div style="background-color:blue" flex="20">
-      <mat-card>
-          <mat-card-title>All Business Unit</mat-card-title>
-          <mat-card-content>
-              <mat-table #table [dataSource]="dataSource">
-                  
-                      <!--- Note that these columns can be defined in any order.
-                            The actual rendered columns are set as a property on the row definition" -->
-                  
-                      <!-- Position Column -->
-                      <ng-container matColumnDef="position">
-                        <mat-header-cell *matHeaderCellDef> No. </mat-header-cell>
-                        <mat-cell *matCellDef="let element"> {{element.position}} </mat-cell>
-                      </ng-container>
-                  
-                      <!-- Name Column -->
-                      <ng-container matColumnDef="name">
-                        <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
-                        <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
-                      </ng-container>
-                  
-                      <!-- Weight Column -->
-                      <ng-container matColumnDef="weight">
-                        <mat-header-cell *matHeaderCellDef> Weight </mat-header-cell>
-                        <mat-cell *matCellDef="let element"> {{element.weight}} </mat-cell>
-                      </ng-container>
-                  
-                      <!-- Color Column -->
-                      <ng-container matColumnDef="symbol">
-                        <mat-header-cell *matHeaderCellDef> Symbol </mat-header-cell>
-                        <mat-cell *matCellDef="let element"> {{element.symbol}} </mat-cell>
-                      </ng-container>
-                  
-                      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-                      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-                    </mat-table>
-          </mat-card-content>
-      </mat-card>
-       <mat-card>
-          <mat-card-title>Create Business Unit</mat-card-title>
-          <mat-card-content>
-              <mat-horizontal-stepper [linear]="isLinear">
-                  <mat-step [stepControl]="businessUnitForm" *ngFor="let control of this.businessUnitControls" >
-                         <form [formGroup]="businessUnitForm" (onsubmit)="onSubmit()"> 
-                           <div *ngFor="let item of control" >
-                               <ng-template matStepLabel>{{item.label}}</ng-template>
-                               <mat-form-field>
-                                   <input matInput [placeholder]="item.placeholder" [formControlName]="item.key" required>
-                               </mat-form-field>
-                           </div>
-                         </form>   
-                         <div class="button-row">
-                             <button mat-button color="primary" matStepperNext>Save</button>
-                         </div>  
-                     </mat-step>
-                  
-                     <!-- Submit Button -->
-                     <mat-step>
-                       <form [formGroup]="businessUnitForm" (onsubmit)="onSubmit()"> 
-                         <ng-template matStepLabel>Submit</ng-template>
-                         Click to Save
-                         <div class="button-row">
-                           <button mat-button color="warn" type="submit" >Save</button>
-                         </div>
-                       </form>                            
-                     </mat-step>
-             
-         </mat-horizontal-stepper>
-          </mat-card-content>
-        </mat-card>
+<div class="container" fxLayout fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="10px" fxLayoutGap.xs="0">
+  <div class="item item-1" fxFlex="15%">
+    <mat-card>
+      <mat-card-title>Create Business Unit</mat-card-title>
+      <mat-card-content>
+        <mat-horizontal-stepper [linear]="isLinear">
+          <mat-step [stepControl]="businessUnitForm" *ngFor="let control of this.businessUnitControls">
+            <form [formGroup]="businessUnitForm" (onsubmit)="onSubmit()">
+              <div *ngFor="let item of control">
+                <ng-template matStepLabel>{{item.label}}</ng-template>
+                <mat-form-field>
+                  <input matInput [placeholder]="item.placeholder" [formControlName]="item.key" required>
+                </mat-form-field>
+              </div>
+            </form>
+            <div class="button-row">
+              <button mat-button color="primary" matStepperNext>Save</button>
+            </div>
+          </mat-step>
+
+          <!-- Submit Button -->
+          <mat-step>
+            <form [formGroup]="businessUnitForm" (onsubmit)="onSubmit()">
+              <ng-template matStepLabel>Submit</ng-template>
+              Click to Save
+              <div class="button-row">
+                <button mat-button color="warn" type="submit">Save</button>
+              </div>
+            </form>
+          </mat-step>
+
+        </mat-horizontal-stepper>
+      </mat-card-content>
+    </mat-card>
   </div>
-</div>  
+  <div class="item item-2" fxFlex="20%" fxFlexOrder="3">
+    <mat-card>
+      <mat-card-title>All Business Unit</mat-card-title>
+      <mat-card-content>
+        <mat-table #table [dataSource]="dataSource">
 
+          <!--- Note that these columns can be defined in any order.
+                        The actual rendered columns are set as a property on the row definition" -->
 
+          <!-- Position Column -->
+          <ng-container matColumnDef="position">
+            <mat-header-cell *matHeaderCellDef> No. </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.position}} </mat-cell>
+          </ng-container>
+
+          <!-- Name Column -->
+          <ng-container matColumnDef="name">
+            <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+          </ng-container>
+
+          <!-- Weight Column -->
+          <ng-container matColumnDef="weight">
+            <mat-header-cell *matHeaderCellDef> Weight </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.weight}} </mat-cell>
+          </ng-container>
+
+          <!-- Color Column -->
+          <ng-container matColumnDef="symbol">
+            <mat-header-cell *matHeaderCellDef> Symbol </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.symbol}} </mat-cell>
+          </ng-container>
+
+          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        </mat-table>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <div class="item item-3" fxFlex>Item 3</div>
+
+</div>
