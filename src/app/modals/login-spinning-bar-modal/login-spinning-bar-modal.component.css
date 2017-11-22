@@ -1,0 +1,6 @@
+.modal-content{
+    background-color: transparent;
+    border-radius: 0;
+    background-clip: content-box;
+    border: none;
+}
