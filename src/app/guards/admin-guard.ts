@@ -5,7 +5,7 @@ import {  ApplicationService } from '../services/application/application.service
 import { BusinessUnitComponent } from '../main/business-unit/business-unit.component';
 
 @Injectable()
-export class BusinessUnitGuard implements CanActivate, CanDeactivate<BusinessUnitComponent> {
+export class AdminGuardGuard implements CanActivate, CanDeactivate<BusinessUnitComponent> {
   
   /**
    * 

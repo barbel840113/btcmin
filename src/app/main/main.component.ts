@@ -32,9 +32,10 @@ export class MainComponent implements OnInit, OnDestroy {
   public timerRefresherSubject$ = new Subject();
 
   //navigation on side nav bar
-  navItems = [
+  public navItemsAdministrator = [
     {name: 'Dashboard', route: '/main/dashboards'},
-    {name: 'Business Units', route: '/business-unit'}
+    {name: 'Business Units', route: '/business-unit'},
+    {name: 'User Overview', route: '/usersoverview'}
   ];
 
 

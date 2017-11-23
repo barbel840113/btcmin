@@ -20,8 +20,9 @@ import { BaseRequestOptions, Http } from "@angular/http";
 import { DialogAppService } from './dialogModal/dialogModal.service';
 import { HttpModule } from '@angular/http';
 import { UserService } from './users/user.service';
-import { BusinessUnitGuard } from '../guards/bu-guard';
+import { AdminGuardGuard } from '../guards/admin-guard';
 import { AppSettingsService } from './app-settings/app-settings.service';
+import { BusinessUnitService } from './business-unit/business-unit.service';
 
 @NgModule({
     imports: [CommonModule],
@@ -47,8 +48,9 @@ export class ServicesModule{
                            SettingsService, 
                            TransactionsService,
                            AccountService,
-                           BusinessUnitGuard,
+                           AdminGuardGuard,
                            AuthenticationGuard,
+                           BusinessUnitService,
                            DialogAppService,
                            DataService,
                            TransactionService,

@@ -6,7 +6,8 @@ import { SettingsComponent } from './settings/settings.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { TransactionsComponent} from './transactions/transactions.component';
 import { BusinessUnitComponent}  from './business-unit/business-unit.component';
-import { BusinessUnitGuard } from '../guards/bu-guard';
+import { AdminGuardGuard } from '../guards/admin-guard';
+import { UserOverviewComponent } from './user-overview/user-overview.component';
 
 const routes: Routes = [
   {
@@ -18,7 +19,8 @@ const routes: Routes = [
        { path: '', component : DashboardComponent},
        { path: 'dashboards', component : DashboardComponent},
        { path: 'transactions', component:TransactionsComponent},
-       { path: 'business-unit', component: BusinessUnitComponent, canActivate: [BusinessUnitGuard], canDeactivate : [BusinessUnitGuard] },
+       { path: 'user-overview', component:UserOverviewComponent, canActivate: [AdminGuardGuard],canDeactivate: [AdminGuardGuard]},
+       { path: 'business-unit', component: BusinessUnitComponent, canActivate: [AdminGuardGuard], canDeactivate : [AdminGuardGuard] },
     ]
   }
  

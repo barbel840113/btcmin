@@ -10,7 +10,7 @@
          <a mat-list-item tabindex="-1" >fdsfd</a>
       </mat-nav-list>
     <mat-nav-list>
-      <a *ngFor="let navItem of navItems" mat-list-item (click)="start.close()"   [routerLink]="[navItem.route]" routerLinkActive #routerLinkActiveInstance="routerLinkActive">
+      <a *ngFor="let navItem of this.navItemsAdministrator" mat-list-item (click)="start.close()"   [routerLink]="[navItem.route]" routerLinkActive #routerLinkActiveInstance="routerLinkActive">
         {{navItem.name}}
       </a>
     </mat-nav-list>

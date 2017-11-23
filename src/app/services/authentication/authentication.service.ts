@@ -13,24 +13,38 @@ export interface AppState {
 @Injectable()
 export class AuthenticationService {
 
-  private isUserLogged: any = false;
- 
+  public isUserLogged: any = false;
+  
+  private securityRole: string = "";
   
   //user is authenticated
   redirectUrl: string;
 
   //constructor
-  constructor(private applicationService: ApplicationService) {
+  constructor(public applicationService: ApplicationService) {
    this.applicationService.isUserloggedSubscription$.subscribe(
      (result)=>{
        this.isUserLogged = result;
      }
    );
+   
+   this.applicationService.profileUserContainer$.subscribe(
+     (result) =>{
+       this.securityRole = result.role;
+     },
+     (error : any) =>{}
+   );
+
   }
 
   public setUserAuthentication(isAuthenticated : boolean)
   {
      this.isUserLogged = isAuthenticated;
+  }
+
+  public getSecurityRoleName()
+  {
+      return this.securityRole;
   }
 
   //check and return boolean true if user has access false if not

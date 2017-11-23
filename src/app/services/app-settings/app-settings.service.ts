@@ -15,15 +15,6 @@ export class AppSettingsService {
     public dataService : DataService
   ) { }
 
-  /**
-   * Create Business Unit Model
-   * @param model Model for VM Business Unit
-   */
-  public createBusinessUnit(model : any) : Observable<any>
-  {
-      const url = CREATEBUSINESSUNIT; 
-      return this.dataService.post(url,model)
-        .catch(error => Observable.throw(error));
-  }
+
 
 }

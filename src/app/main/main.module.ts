@@ -23,7 +23,7 @@ import { MatHelpModule } from '../mat-help/mat-help.module';
 import { BusinessUnitComponent } from './business-unit/business-unit.component';
 import { MessageFormComponent } from '../shared/message-form/message-form.component';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
-
+import { UserOverviewComponent } from './user-overview/user-overview.component';
 import {FlexLayoutModule} from "@angular/flex-layout";
 
 
@@ -45,14 +45,16 @@ import {FlexLayoutModule} from "@angular/flex-layout";
     SettingsComponent,
     DashboardComponent,
     TransactionsComponent,
-    BusinessUnitComponent
+    BusinessUnitComponent,
+    UserOverviewComponent
   ],
   exports: [
     MainComponent,
     SettingsComponent,
     DashboardComponent,
     TransactionsComponent,
-    BusinessUnitComponent
+    BusinessUnitComponent,
+    UserOverviewComponent
   ],
   providers:[ {provide: OverlayContainer, useClass: FullscreenOverlayContainer}],
   entryComponents:[MessageFormComponent]

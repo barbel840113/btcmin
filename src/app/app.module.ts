@@ -19,6 +19,8 @@ import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatInputModule} from '@angular/material';
 import {FlexLayoutModule} from "@angular/flex-layout";
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+
 
 @NgModule({
   declarations: [
@@ -28,6 +30,7 @@ import {FlexLayoutModule} from "@angular/flex-layout";
     FormsModule,
     MainModule,   
     LoginModule,
+    NgxDatatableModule,
     BrowserModule,
     FlexLayoutModule,
     BrowserAnimationsModule,

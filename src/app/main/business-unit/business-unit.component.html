@@ -5,7 +5,7 @@
       <mat-card-content>
         <mat-horizontal-stepper [linear]="isLinear">
           <mat-step [stepControl]="businessUnitForm" *ngFor="let control of this.businessUnitControls">
-            <form [formGroup]="businessUnitForm" (onsubmit)="onSubmit()">
+            <form [formGroup]="businessUnitForm" (onsubmit)="this.onSubmit()">
               <div *ngFor="let item of control">
                 <ng-template matStepLabel>{{item.label}}</ng-template>
                 <mat-form-field>
@@ -20,7 +20,7 @@
 
           <!-- Submit Button -->
           <mat-step>
-            <form [formGroup]="businessUnitForm" (onsubmit)="onSubmit()">
+            <form [formGroup]="businessUnitForm" (onsubmit)="this.onSubmit()">
               <ng-template matStepLabel>Submit</ng-template>
               Click to Save
               <div class="button-row">
@@ -33,45 +33,41 @@
       </mat-card-content>
     </mat-card>
   </div>
-  <div class="item item-2" fxFlex="40%" fxFlexOrder="3">
-    <mat-card>
-      <mat-card-title>All Business Unit</mat-card-title>
-      <mat-card-content>
-        <mat-table #table [dataSource]="dataSource">
-
-          <!--- Note that these columns can be defined in any order.
-                        The actual rendered columns are set as a property on the row definition" -->
-
-          <!-- Position Column -->
-          <ng-container matColumnDef="position">
-            <mat-header-cell *matHeaderCellDef> No. </mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.position}} </mat-cell>
-          </ng-container>
-
-          <!-- Name Column -->
-          <ng-container matColumnDef="name">
-            <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
-          </ng-container>
-
-          <!-- Weight Column -->
-          <ng-container matColumnDef="weight">
-            <mat-header-cell *matHeaderCellDef> Weight </mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.weight}} </mat-cell>
-          </ng-container>
-
-          <!-- Color Column -->
-          <ng-container matColumnDef="symbol">
-            <mat-header-cell *matHeaderCellDef> Symbol </mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.symbol}} </mat-cell>
-          </ng-container>
-
-          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-          <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+      <div class="item item-2" fxFlex="40%" fxFlexOrder="3">
+      
+        <mat-table #table [dataSource]="dataSourceSec">
+          
+              <!--- Note that these columns can be defined in any order.
+                    The actual rendered columns are set as a property on the row definition" -->
+          
+              <!-- Position Column -->
+              <ng-container matColumnDef="businessName">
+                <mat-header-cell *matHeaderCellDef> No. </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.businessName}} </mat-cell>
+              </ng-container>
+          
+              <!-- Name Column -->
+              <ng-container matColumnDef="postCode">
+                <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.postCode}} </mat-cell>
+              </ng-container>
+          
+              <!-- Weight Column -->
+              <ng-container matColumnDef="street1">
+                <mat-header-cell *matHeaderCellDef> Weight </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.street1}} </mat-cell>
+              </ng-container>
+          
+              <!-- Color Column -->
+              <ng-container matColumnDef="street2">
+                <mat-header-cell *matHeaderCellDef> Symbol </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.street2}} </mat-cell>
+              </ng-container>
+          
+              <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+              <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>   
+       
         </mat-table>
-      </mat-card-content>
-    </mat-card>
   </div>
   <div class="item item-3" fxFlex>Item 3</div>
-
 </div>
