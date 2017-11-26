@@ -1,10 +1,8 @@
-const protocol = window.location.protocol;
-var identityserver = window.location.hostname + ':5000';
-var apiresoure = window.location.hostname + ':5001';
+import { environment } from './../../environments/environment';
 
 
-export const HOSTAPI =  `http://${apiresoure}/`;
-export const HOSTIDENTITY =  `http://${identityserver}/`;
+export const HOSTAPI =  environment.appresource1Url;;
+export const HOSTIDENTITY = environment.identityUrl;
 
 export const URL_LOGIN = HOSTIDENTITY + 'connect/token';
 export const ADMIN_URL = HOSTAPI + 'api/admin/doadminoperation/';

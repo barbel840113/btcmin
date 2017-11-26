@@ -11,7 +11,9 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "compodoc": "compodoc -p tsconfig.json",
-    "runcom": "cd documentation && http-server"
+    "runcom": "cd documentation && http-server",
+    "build-prod": "ng build --prod",
+    "build-stag": "ng build --env=stag"
   },
   "private": true,
   "dependencies": {
