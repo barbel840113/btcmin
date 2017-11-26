@@ -1,5 +1,5 @@
 {
-  "name": "scrimapp",
+  "name": "btcapp",
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
@@ -13,7 +13,8 @@
     "compodoc": "compodoc -p tsconfig.json",
     "runcom": "cd documentation && http-server",
     "build-prod": "ng build --prod",
-    "build-stag": "ng build --env=stag"
+    "build-stag": "ng build"
+    //"build-stag": "ng build --env=stag"
   },
   "private": true,
   "dependencies": {
