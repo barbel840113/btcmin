@@ -5,7 +5,7 @@
       <mat-card-content>
         <mat-horizontal-stepper [linear]="isLinear">
           <mat-step [stepControl]="businessUnitForm" *ngFor="let control of this.businessUnitControls">
-            <form [formGroup]="businessUnitForm" (onsubmit)="this.onSubmit()">
+            <form [formGroup]="businessUnitForm" (submit)="this.onSubmit()">
               <div *ngFor="let item of control">
                 <ng-template matStepLabel>{{item.label}}</ng-template>
                 <mat-form-field>
@@ -14,17 +14,17 @@
               </div>
             </form>
             <div class="button-row">
-              <button mat-button color="primary" matStepperNext>Save</button>
+              <button mat-button color="primary" matStepperNext>Next</button>
             </div>
           </mat-step>
 
           <!-- Submit Button -->
           <mat-step>
-            <form [formGroup]="businessUnitForm" (onsubmit)="this.onSubmit()">
+            <form [formGroup]="businessUnitForm" (submit)="this.onSubmit()">
               <ng-template matStepLabel>Submit</ng-template>
               Click to Save
               <div class="button-row">
-                <button mat-button color="warn" type="submit">Save</button>
+                <button mat-button color="warn" type="button" (click)="this.onSubmit()">Save</button>
               </div>
             </form>
           </mat-step>
