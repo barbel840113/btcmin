@@ -13,7 +13,7 @@
     "compodoc": "compodoc -p tsconfig.json",
     "runcom": "cd documentation && http-server",
     "build-prod": "ng build --prod",
-    "build-stag": "ng build"
+    "build-stag": "ng build --environment=stag"
   },
   "private": true,
   "dependencies": {
