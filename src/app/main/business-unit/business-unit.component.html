@@ -1,5 +1,21 @@
-<div class=" flex-container" fxLayout="column" >
-  <div class="item item-1" fxFlex="40%">
+<div class=" flex-container" fxLayout="column" fxLayoutGap="10px">
+  <div class="item item-1" fxFlex="30%" fxFlexOrder="1">
+    <div class='container' [dragula]='"bag-task1"' [dragulaOptions]="options" [dragulaModel]='items'>
+      <li *ngFor="let item of items">{{item}}</li>
+    </div>
+    <div class='container' [dragula]='"bag-task1"' [dragulaModel]="itemDrop" [dragulaOptions]="options">
+      <li *ngFor="let item of itemDrop">{{item}}</li>
+      Copy over here 
+    </div>
+    {{items | json }} 
+   
+    {{itemDrop | json}}
+  
+  </div>
+</div>
+
+<div class=" flex-container" fxLayout="column" fxLayoutGap="10px">
+  <div class="item item-1" fxFlex="40%" fxFlexOrder="1">
     <mat-card>
       <mat-card-title>Create Business Unit</mat-card-title>
       <mat-card-content>
@@ -33,41 +49,43 @@
       </mat-card-content>
     </mat-card>
   </div>
-      <div class="item item-2" fxFlex="40%" fxFlexOrder="3">
-      
-        <mat-table #table [dataSource]="dataSourceSec">
-          
-              <!--- Note that these columns can be defined in any order.
+</div>
+
+<div class=" flex-container" fxLayout="column" fxLayoutGap="10px">
+  <div class="item item-2" fxFlex="30%" fxFlexOrder="3">
+
+    <mat-table #table [dataSource]="dataSourceSec">
+
+      <!--- Note that these columns can be defined in any order.
                     The actual rendered columns are set as a property on the row definition" -->
-          
-              <!-- Position Column -->
-              <ng-container matColumnDef="businessName">
-                <mat-header-cell *matHeaderCellDef> No. </mat-header-cell>
-                <mat-cell *matCellDef="let element"> {{element.businessName}} </mat-cell>
-              </ng-container>
-          
-              <!-- Name Column -->
-              <ng-container matColumnDef="postCode">
-                <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
-                <mat-cell *matCellDef="let element"> {{element.postCode}} </mat-cell>
-              </ng-container>
-          
-              <!-- Weight Column -->
-              <ng-container matColumnDef="street1">
-                <mat-header-cell *matHeaderCellDef> Weight </mat-header-cell>
-                <mat-cell *matCellDef="let element"> {{element.street1}} </mat-cell>
-              </ng-container>
-          
-              <!-- Color Column -->
-              <ng-container matColumnDef="street2">
-                <mat-header-cell *matHeaderCellDef> Symbol </mat-header-cell>
-                <mat-cell *matCellDef="let element"> {{element.street2}} </mat-cell>
-              </ng-container>
-          
-              <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-              <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>   
-       
-        </mat-table>
+
+      <!-- Position Column -->
+      <ng-container matColumnDef="businessName">
+        <mat-header-cell *matHeaderCellDef> No. </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.businessName}} </mat-cell>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="postCode">
+        <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.postCode}} </mat-cell>
+      </ng-container>
+
+      <!-- Weight Column -->
+      <ng-container matColumnDef="street1">
+        <mat-header-cell *matHeaderCellDef> Weight </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.street1}} </mat-cell>
+      </ng-container>
+
+      <!-- Color Column -->
+      <ng-container matColumnDef="street2">
+        <mat-header-cell *matHeaderCellDef> Symbol </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.street2}} </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+    </mat-table>
   </div>
-  <div class="item item-3" fxFlex>Item 3</div>
 </div>

@@ -20,7 +20,10 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatInputModule} from '@angular/material';
 import {FlexLayoutModule} from "@angular/flex-layout";
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
-
+import { reducers, metaReducers } from './state/app.reducer';
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { DragulaModule } from 'ng2-dragula';
 
 @NgModule({
   declarations: [
@@ -37,7 +40,12 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
     MatInputModule,
     NoopAnimationsModule,
     HttpModule,
+    DragulaModule,
     ServicesModule.forRoot(), 
+    StoreModule.forRoot({btcApp : reducers}),
+    StoreDevtoolsModule.instrument({
+      maxAge: 5
+    }),
     SharedModule,
     RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules, useHash: false, enableTracing: true })
 

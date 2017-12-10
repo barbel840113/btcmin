@@ -25,6 +25,7 @@ import { MessageFormComponent } from '../shared/message-form/message-form.compon
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { UserOverviewComponent } from './user-overview/user-overview.component';
 import {FlexLayoutModule} from "@angular/flex-layout";
+import {  DragulaModule } from 'ng2-dragula';
 
 
 @NgModule({
@@ -37,6 +38,7 @@ import {FlexLayoutModule} from "@angular/flex-layout";
     PipesModule,
     FlexLayoutModule,
     MatHelpModule,
+    DragulaModule,
     NgxDatatableModule
   //  SidebarModule.forRoot(),
   ],
