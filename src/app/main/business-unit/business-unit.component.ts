@@ -19,6 +19,8 @@ import { BusinessUnitService } from '../../services/business-unit/business-unit.
 import { BusinessUnit } from './business-unit-model';
 import { DragulaService } from 'ng2-dragula';
 
+import * as d3 from "d3";
+
 
 export interface Element {
   businessName: string;
@@ -86,7 +88,7 @@ export class BusinessUnitComponent implements OnInit {
   dataSourceSec = new ExampleDataSource(this.businessUnitService);
 
   public options: any = {
-    removeOnSpill: false,
+    removeOnSpill: true,
     copy: true
   };
 
@@ -132,6 +134,8 @@ export class BusinessUnitComponent implements OnInit {
 
     //generate new form
     this.generateControlsForBusinessUnit();
+
+    d3.selectAll("p").style("color","yellow");
 
     this.businessUnitService.getAllBusinessUnit().subscribe(
       (result) => {
