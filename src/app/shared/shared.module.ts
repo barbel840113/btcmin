@@ -21,6 +21,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatToolbarModule} from '@angular/material';
 import  { MatHelpModule } from '../mat-help/mat-help.module';
 import { MessageFormComponent } from './message-form/message-form.component';
+import { BusinessUnitNoteChartComponent } from './business-unit-note-chart/business-unit-note-chart.component';
  
 @NgModule({
     imports: [
@@ -43,6 +44,7 @@ import { MessageFormComponent } from './message-form/message-form.component';
         MessageFormComponent,
         DndDirective,
         LoadingbarComponent,
+        BusinessUnitNoteChartComponent,
         FooterComponent,
         LoginSpinningBarModalComponent
     ],
@@ -58,6 +60,7 @@ import { MessageFormComponent } from './message-form/message-form.component';
         RouterModule,
         HeaderAdminComponent,
         NavbarAdminComponent,
+        BusinessUnitNoteChartComponent,
         UploadfileComponent  ,
         DndDirective,
         LoginSpinningBarModalComponent,
