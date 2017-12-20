@@ -1,4 +1,4 @@
-import { Component, OnInit , ViewContainerRef} from '@angular/core';
+import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import * as d3 from 'd3';
 
 @Component({
@@ -10,37 +10,32 @@ export class BusinessUnitNoteChartComponent implements OnInit {
 
   elem;
 
-  public treeData = [4, 8, 15,16,23];
-  
+  public treeData = [4, 8, 15, 16, 23];
+
   private i = 0;
 
   // ************** Generate the tree diagram	 *****************
-  public margin = {top: 40, right: 120, bottom: 20, left: 120};
-  public width = 960 - this.margin.right - this.margin.left;
-  public height = 500 - this.margin.top - this.margin.bottom;
+  public margin = { top: 40, right: 120, bottom: 20, left: 120 };
 
-  public tree:any;
-  public root:any;
-
-  public diagonal :any;
-  
-  public svg : any;
-
-  constructor(private viewContainer : ViewContainerRef) { 
-
-     
+  constructor(private viewContainer: ViewContainerRef) {
   }
 
   ngOnInit() {
+    //get reference to element
     this.elem = this.viewContainer.element.nativeElement;
-    d3.select(this.elem).select("div").style("background-color", "yellow");
 
-    d3.select(".chart")
-    .selectAll("div")
-      .data(this.treeData)
-    .enter().append("div")
-      .style("width", function(d) { return d * 10 + "px"; })
-      .text(function(d) { return d; });
+    // var ref = d3.select(this.elem).selectAll("circle").data([32, 57, 112, 293]);
+    var svg = d3.select(this.elem).select("svg");
+
+    svg.selectAll("circle")
+      .style("fill", "steelblue")
+      .data([32, 57, 112, 293])
+      .enter().append("circle")
+      .style("fill", "steelblue")
+      .attr("cy", 60)
+      .attr("cx", function (d, i) { return i * 100 + 30; })
+      .attr("r", function (d) { return Math.sqrt(d); });
+
   }
 
 }
