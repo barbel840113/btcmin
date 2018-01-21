@@ -1,5 +1,4 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import {NgbModule, NgbAccordionConfig ,NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 import { TransactionsComponent } from './transactions.component';
 import { routerTransition } from '../../router.animations';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -10,8 +9,8 @@ describe('TransactionsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports:[NgbModule.forRoot(),BrowserAnimationsModule],
-      providers:[NgbActiveModal],      
+      imports:[BrowserAnimationsModule],
+      providers:[],      
       declarations: [ TransactionsComponent ]
     })
     .compileComponents()

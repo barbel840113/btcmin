@@ -16,8 +16,8 @@ import { HeaderAdminComponent} from './shared/header-admin/header-admin.componen
 import { FormGroup, FormBuilder,FormsModule, FormControl, FormArray, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule, Response, RequestOptions, RequestMethod, URLSearchParams } from '@angular/http';
 import {ServicesModule } from './services/services.module';
-import { appReducer} from './app.store';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { logger } from './state/app.reducer';
+import { reducers, metaReducers } from './state/app.reducer';
 
 xdescribe('Router: App', () => {
   let location: Location;
@@ -29,7 +29,7 @@ xdescribe('Router: App', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [RouterTestingModule.withRoutes(routes),HttpModule,ServicesModule.forRoot(),  
-        FormsModule, StoreModule.provideStore(appReducer), ReactiveFormsModule,NgbModule.forRoot()],
+        FormsModule,    StoreModule.forRoot({btcApp : reducers}),, ReactiveFormsModule],
       declarations: [
         AppComponent,
         LoginComponent,

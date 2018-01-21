@@ -10,8 +10,9 @@ import { routes } from '../../app.routes';
 import { ServicesModule } from '../../services/services.module';
 import { AccountService } from '../../services/account/account.service';
 import { StoreModule } from '@ngrx/store';
-import { appReducer } from '../../app.store';
+import { AppState } from '../../state/app.state';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { reducers, metaReducers } from '../../state/app.reducer';
 
 describe('RegisterComponent', () => {
   let component: RegisterComponent;
@@ -33,7 +34,7 @@ describe('RegisterComponent', () => {
         BrowserAnimationsModule,
         ServicesModule.forRoot(),
         ReactiveFormsModule,
-        StoreModule.provideStore(appReducer)
+        StoreModule.forRoot({btcApp : reducers}),
       ],
       
     })

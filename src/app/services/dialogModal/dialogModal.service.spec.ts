@@ -1,15 +1,14 @@
 import { TestBed, inject } from '@angular/core/testing';
-
-import { LoadingbarService } from './loadingbar.service';
+import { DialogAppService} from './dialogModal.service';
 
 describe('LoadingbarService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [LoadingbarService]
+      providers: [DialogAppService]
     });
   });
 
-  it('should ...', inject([LoadingbarService], (service: LoadingbarService) => {
+  it('should ...', inject([DialogAppService], (service: DialogAppService) => {
     expect(service).toBeTruthy();
   }));
 });
