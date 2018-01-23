@@ -26,6 +26,7 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { UserOverviewComponent } from './user-overview/user-overview.component';
 import {FlexLayoutModule} from "@angular/flex-layout";
 import {  DragulaModule } from 'ng2-dragula';
+import { PersonalDetailsComponent } from './settings/personal-details/personal-details.component';
 
 
 @NgModule({
@@ -48,7 +49,8 @@ import {  DragulaModule } from 'ng2-dragula';
     DashboardComponent,
     TransactionsComponent,
     BusinessUnitComponent,
-    UserOverviewComponent
+    UserOverviewComponent,
+    PersonalDetailsComponent
   ],
   exports: [
     MainComponent,
@@ -56,7 +58,8 @@ import {  DragulaModule } from 'ng2-dragula';
     DashboardComponent,
     TransactionsComponent,
     BusinessUnitComponent,
-    UserOverviewComponent
+    UserOverviewComponent,
+    PersonalDetailsComponent
   ],
   providers:[ {provide: OverlayContainer, useClass: FullscreenOverlayContainer}],
   entryComponents:[MessageFormComponent]

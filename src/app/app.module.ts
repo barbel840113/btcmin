@@ -27,7 +27,7 @@ import { DragulaModule } from 'ng2-dragula';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     FormsModule,
