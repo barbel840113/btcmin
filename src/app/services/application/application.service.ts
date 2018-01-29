@@ -133,6 +133,18 @@ export class ApplicationService {
            .do(res => {});
    }
 
+   //convert response to json object
+   public converResponseToJSONObject(object) : any{
+      if(object)
+      {
+        let result = JSON.parse(object['_body'])
+
+        return result;
+      }
+      else{
+        return null;
+      }
+   }
 
 
 }

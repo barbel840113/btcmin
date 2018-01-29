@@ -17,6 +17,8 @@ import { DataService } from '../data-service/data.service';
 import { SettingsService } from '../settings/settings.service';
 import { configTokenPost} from '../../constants/config';
 import { UserService } from '../../services/users/user.service';
+import { Store} from '@ngrx/store';
+import { AppState } from '../../state/app.state';
 
 
 @Injectable()
@@ -33,7 +35,8 @@ export class AuthTokenService {
         private applicationService : ApplicationService,
         private dataService : DataService,
         private settingsService :SettingsService,
-        private userService : UserService
+        private userService : UserService,
+        private store :Store<AppState>
     ) { }
 
     public getTokens(data: LoginModel | RefreshGrantModel, grantType: string): Observable<any> {
@@ -65,6 +68,7 @@ export class AuthTokenService {
                 this.applicationService.userProfileSubscription$.next(profile);
                 this.userService.userNameSubscription$.next(profile['name']);
                 //save role
+                this.store.dispatch({type : "TOKEN", paylod :{tokens}});
                 this.userService.userRoleSubscription$.next(profile.role);
                 this.applicationService.profileUserContainer$.next(profile);
                 this.applicationService.tokenSubscription$.next(tokens.access_token);  

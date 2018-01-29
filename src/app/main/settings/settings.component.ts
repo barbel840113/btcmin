@@ -9,7 +9,7 @@ import { ControlBase } from '../../shared/forms/control-base';
 import { ControlTextbox } from '../../shared/forms/control-textbox';
 import { FormControlService } from '../../services/formcontrol/form-control.service';
 import { ToasterModule, ToasterService } from 'angular2-toaster';
-
+import { UserService } from '../../services/users/user.service';
 
 @Component({
   selector: 'app-settings',
@@ -41,6 +41,8 @@ export class SettingsComponent implements OnInit, OnDestroy {
   //private controls to store all element in dynamic form
   private settingsFormControlsContainer: any;
   private bitcoinsFormControlsContainer: any;
+
+  private userSettingsSubscription$: any;
   
 
   //enable or disable button for generate token
@@ -64,7 +66,8 @@ export class SettingsComponent implements OnInit, OnDestroy {
     private router: Router,
     private formBuilder: FormBuilder,
     private cd: ChangeDetectorRef,
-    private formControlService: FormControlService, ) {
+    private formControlService: FormControlService,
+    private userService : UserService ) {
 
     this.userNameSubscription$ = this._applicationService.userNameSubscription$.subscribe(
       (result) => {
@@ -74,6 +77,18 @@ export class SettingsComponent implements OnInit, OnDestroy {
         this._toastService.pop('error', 'BTCApp Error', error);
       });
 
+
+    this.userNameSubscription$ = this.userService.getUSerSettings().subscribe(
+      (res) =>{
+        if(res != null)
+        {
+          var result = this._applicationService.converResponseToJSONObject(res);
+          
+        }
+        console.log(res);
+      },
+      (error : any) =>{}
+    );
   
   }
 

@@ -3,5 +3,5 @@ export interface AppState{
 }
 
 export interface BtcBuddyState{
-    token : Array<any>;
+    token : any;
 }

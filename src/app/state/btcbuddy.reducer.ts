@@ -2,7 +2,7 @@ import { createFeatureSelector, createSelector } from '@ngrx/store';
 import * as fromActions from './app.actions';
 import { BtcBuddyState, AppState } from './app.state';
 
-export const initialState : BtcBuddyState = {token : ['Welcome Miki']};
+export const initialState : BtcBuddyState = {token : 'Welcome Miki'};
 
 export function reducer (state = initialState, action : fromActions.All) : BtcBuddyState{
     switch(action.type)

@@ -18,4 +18,6 @@ export const GETBITCIONADDRESSFORUSER = HOSTAPI +'api/BTCApp/getbitcoinaddress';
 export const CREATEBUSINESSUNIT = HOSTAPI + 'api/AppSettings/createbusinessunit';
 export const GETBUSINESSUNIT = HOSTAPI + 'api/AppSettings/getbusinessunit';
 
+//get user settings
+export const GETUSERSETTINGS = HOSTAPI + 'api/AppSettings/getusersettings';
 
