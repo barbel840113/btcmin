@@ -68,7 +68,7 @@ export class AuthTokenService {
                 this.applicationService.userProfileSubscription$.next(profile);
                 this.userService.userNameSubscription$.next(profile['name']);
                 //save role
-                this.store.dispatch({type : "TOKEN", paylod :{tokens}});
+                this.store.dispatch({type : "TOKEN", paylod :{ tokens :  tokens.access_token}});
                 this.userService.userRoleSubscription$.next(profile.role);
                 this.applicationService.profileUserContainer$.next(profile);
                 this.applicationService.tokenSubscription$.next(tokens.access_token);  

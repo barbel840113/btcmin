@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, Validators} from '@angular/forms';
+import { UserService } from '../../../services/users/user.service';
+import { FormControlService } from '../../../services/formcontrol/form-control.service';
+import { FormGroup } from '@angular/forms/src/model';
+import { ControlBase } from '../../../shared/forms/control-base';
+import { ControlTextbox } from '../../../shared/forms/control-textbox';
 
 @Component({
   selector: 'app-personal-details',
@@ -10,9 +15,13 @@ export class PersonalDetailsComponent implements OnInit {
 
   email = new FormControl('', [Validators.required, Validators.email]);
 
-  constructor() { }
+  public perDetailsForm : FormGroup;
+
+  
+  constructor(private formControlService:  FormControlService, private userService :UserService) { }
 
   ngOnInit() {
+
   }
 
   getErrorMessage() {
