@@ -10,6 +10,12 @@ import { ControlTextbox } from '../../shared/forms/control-textbox';
 import { FormControlService } from '../../services/formcontrol/form-control.service';
 import { ToasterModule, ToasterService } from 'angular2-toaster';
 import { UserService } from '../../services/users/user.service';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs/Observable';
+import * as PersonalDetails from '../../state/userservice.actions';
+import { AppState, UserSettingsState} from '../../state/app.state';
+import { State } from '@ngrx/store/src/state';
+import * as reducer from '../../state/userservice.reducer';
 
 @Component({
   selector: 'app-settings',
@@ -44,6 +50,7 @@ export class SettingsComponent implements OnInit, OnDestroy {
 
   private userSettingsSubscription$: any;
   
+  private personalDetailsState$ : any;
 
   //enable or disable button for generate token
   private enableOrDisableGenerateWallet: boolean = false;
@@ -67,7 +74,8 @@ export class SettingsComponent implements OnInit, OnDestroy {
     private formBuilder: FormBuilder,
     private cd: ChangeDetectorRef,
     private formControlService: FormControlService,
-    private userService : UserService ) {
+    private userService : UserService,
+    private store: Store<AppState> ) {
 
     this.userNameSubscription$ = this._applicationService.userNameSubscription$.subscribe(
       (result) => {
@@ -83,13 +91,15 @@ export class SettingsComponent implements OnInit, OnDestroy {
         if(res != null)
         {
           var result = this._applicationService.converResponseToJSONObject(res);
-          
+          this.store.dispatch(new PersonalDetails.LoadPersonalDetailsAction(result));
         }
         console.log(res);
       },
       (error : any) =>{}
     );
-  
+
+    this.personalDetailsState$ = this.store.select(reducer.getDetailState);
+     
   }
 
   /**

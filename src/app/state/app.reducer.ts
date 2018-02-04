@@ -3,9 +3,11 @@ import { AppState } from './app.state';
 import * as btuBuddyReducer from './btcbuddy.reducer';
 import { environment } from '../../environments/environment';
 import { reduce } from 'rxjs/operators/reduce';
+import * as userSettingsReducer from './userservice.reducer';
 
 export const reducers : ActionReducerMap<AppState> = {
-    btcBuddyState : btuBuddyReducer.reducer
+    btcBuddyState : btuBuddyReducer.reducer,
+    userSettingsState: userSettingsReducer.reducer
 };
 
 export function logger( reducer : ActionReducer<AppState>) : ActionReducer<AppState>{

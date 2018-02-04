@@ -5,6 +5,10 @@ import { FormControlService } from '../../../services/formcontrol/form-control.s
 import { FormGroup } from '@angular/forms/src/model';
 import { ControlBase } from '../../../shared/forms/control-base';
 import { ControlTextbox } from '../../../shared/forms/control-textbox';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs/Observable';
+import * as PersonalDetails from '../../../state/userservice.actions';
+import { AppState} from '../../../state/app.state';
 
 @Component({
   selector: 'app-personal-details',
@@ -17,8 +21,13 @@ export class PersonalDetailsComponent implements OnInit {
 
   public perDetailsForm : FormGroup;
 
+  public personalDetailsSubscription$ : any;
+
   
-  constructor(private formControlService:  FormControlService, private userService :UserService) { }
+  constructor(private formControlService:  FormControlService, private userService :UserService, private store: Store<AppState>) {
+
+     this.personalDetailsSubscription$ = this.store.select('userSettingsState');
+   }
 
   ngOnInit() {
 
