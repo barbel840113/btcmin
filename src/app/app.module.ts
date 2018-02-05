@@ -20,10 +20,11 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatInputModule} from '@angular/material';
 import {FlexLayoutModule} from "@angular/flex-layout";
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
-import { reducers, metaReducers } from './state/app.reducer';
+import { reducers, metaReducers, logger } from './state/app.reducer';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { DragulaModule } from 'ng2-dragula';
+import { resource } from 'selenium-webdriver/http';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,7 @@ import { DragulaModule } from 'ng2-dragula';
     HttpModule,
     DragulaModule,
     ServicesModule.forRoot(), 
-    StoreModule.forRoot({btcApp : reducers}),
+    StoreModule.forRoot(reducers ,{metaReducers}),
     StoreDevtoolsModule.instrument({
       maxAge: 5
     }),

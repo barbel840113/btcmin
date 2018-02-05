@@ -7,7 +7,9 @@ export const UPDATEPERSONALDETAILS = "UPDATEPERSONALDETAILS";
 export class LoadPersonalDetailsAction implements Action{
    readonly type = LOADPERSONALDETAILS;
 
-   constructor(public payload : any){}
+   constructor(public payload : any){
+       this.payload = payload;
+   }
 }
 
 export class UpdatePersonalDetails implements Action{

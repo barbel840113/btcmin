@@ -12,10 +12,11 @@ import { ToasterModule, ToasterService } from 'angular2-toaster';
 import { UserService } from '../../services/users/user.service';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
-import * as PersonalDetails from '../../state/userservice.actions';
-import { AppState, UserSettingsState} from '../../state/app.state';
+import * as PersonalDetailsStoreActions from '../../state/userservice.actions';
+import { AppState, UserSettingsState } from '../../state/app.state';
 import { State } from '@ngrx/store/src/state';
 import * as reducer from '../../state/userservice.reducer';
+import { PersonalDetailsEntity } from '../../models/personal-details';
 
 @Component({
   selector: 'app-settings',
@@ -49,16 +50,17 @@ export class SettingsComponent implements OnInit, OnDestroy {
   private bitcoinsFormControlsContainer: any;
 
   private userSettingsSubscription$: any;
-  
-  private personalDetailsState$ : any;
+
+  private personalDetailsState$: any;
+  public personalDetailsContainer: PersonalDetailsEntity;
 
   //enable or disable button for generate token
   private enableOrDisableGenerateWallet: boolean = false;
 
   tiles = [
-    {text: 'One', cols: 1, rows: 2, color: 'lightblue'},
-    {text: 'Two', cols: 3, rows: 1, color: 'lightgreen'},
-    {text: 'Four', cols: 3, rows: 1, color: '#DDBDF1'},
+    { text: 'One', cols: 1, rows: 2, color: 'lightblue' },
+    { text: 'Two', cols: 3, rows: 1, color: 'lightgreen' },
+    { text: 'Four', cols: 3, rows: 1, color: '#DDBDF1' },
   ];
 
   private errorHandler = {
@@ -74,8 +76,8 @@ export class SettingsComponent implements OnInit, OnDestroy {
     private formBuilder: FormBuilder,
     private cd: ChangeDetectorRef,
     private formControlService: FormControlService,
-    private userService : UserService,
-    private store: Store<AppState> ) {
+    private userService: UserService,
+    private store: Store<AppState>) {
 
     this.userNameSubscription$ = this._applicationService.userNameSubscription$.subscribe(
       (result) => {
@@ -87,19 +89,21 @@ export class SettingsComponent implements OnInit, OnDestroy {
 
 
     this.userNameSubscription$ = this.userService.getUSerSettings().subscribe(
-      (res) =>{
-        if(res != null)
-        {
+      (res) => {
+        if (res != null) {
           var result = this._applicationService.converResponseToJSONObject(res);
-          this.store.dispatch(new PersonalDetails.LoadPersonalDetailsAction(result));
+          this.store.dispatch(new PersonalDetailsStoreActions.LoadPersonalDetailsAction(result));
         }
         console.log(res);
       },
-      (error : any) =>{}
+      (error: any) => { }
     );
 
-    this.personalDetailsState$ = this.store.select(reducer.getDetailState);
-     
+    this.personalDetailsState$ = this.store.select((state: AppState) => state.userSettingsState.personalDetails);
+
+    this.personalDetailsState$.subscribe(res =>{
+      console.log(res);
+    });
   }
 
   /**
@@ -122,6 +126,8 @@ export class SettingsComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.userNameSubscription$.unsubscribe();
+    this.personalDetailsState$.unsubscribe();
+
   }
 
 
@@ -151,20 +157,20 @@ export class SettingsComponent implements OnInit, OnDestroy {
 
     this.loadSettingsValues();
 
- 
+
     //this.createSettingsForm();
 
     //initialize layout of personal details
-   // this.initializeLayout();
+    // this.initializeLayout();
 
     //bind valud to the form
     //this.bindUserSettingsValueInToForm();
 
   }
 
-    /**
-   * Bind Settings to the form
-   */
+  /**
+ * Bind Settings to the form
+ */
   private bindUserSettingsValueInToForm() {
     if (this.userSettingInformationContainer != null) {
       let keys = Object.keys(this.userSettingInformationContainer)
