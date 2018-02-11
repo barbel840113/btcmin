@@ -1,16 +1,16 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import * as fromActions from './app.actions';
-import { BtcBuddyState, AppState } from './app.state';
+import { BtcBuddyAuthorizationState, AppState } from './app.state';
+import * as actions from './btcbuddy.actions';
 
-export const initialState : BtcBuddyState = {token : 'Welcome Miki'};
+export const initialState : BtcBuddyAuthorizationState = {token : 'Welcome Miki'};
 
-export function reducer (state = initialState, action : fromActions.All) : BtcBuddyState{
+export function reducer (state = initialState, action : actions.All) : BtcBuddyAuthorizationState{
     switch(action.type)
     {
-        case fromActions.TOKEN: {
+        case actions.LOADTOKEN: {
             return {token :  action.payload};
         }
-        case fromActions.TELLME: {
+        case actions.UPDATETOKEN: {
             return { token: action.payload};
         }
         default:{
@@ -19,9 +19,9 @@ export function reducer (state = initialState, action : fromActions.All) : BtcBu
     }
 }
 
-export const getBtcBuddyState = createFeatureSelector<BtcBuddyState>('btcBuddyApp');
+export const getBtcBuddyState = createFeatureSelector<BtcBuddyAuthorizationState>('btcBuddyApp');
 
 export const getBtcBuddy = createSelector(
     getBtcBuddyState,
-    (state : BtcBuddyState) => state.token
+    (state : BtcBuddyAuthorizationState) => state.token
 );

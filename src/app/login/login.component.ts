@@ -72,11 +72,7 @@ export class LoginComponent implements OnInit {
     public dialogService :DialogAppService,
     public store: Store<BtcBuddyState>
   ) {
-   
-    this.store.dispatch(new fromActions.TokenAction('This is A token'));
-    this.store.dispatch(new fromActions.CallMe(['sivi','talda']));
-
-    var subscr = this.store.select(btcBuddyArticle.getBtcBuddy);
+      
   }
 
 

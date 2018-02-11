@@ -8,19 +8,20 @@ import { Subject} from 'rxjs/Subject';
 import {Subscription} from 'rxjs/Subscription';
 import {  DataService } from '../data-service/data.service';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import * as prop from '../../constants/properties';
 
 @Injectable()
 export class SettingsService {
  
-  constructor(private _dateService :DataService) {
+  constructor(private _dateService :DataService, private _formService:FormControlService) {
     
-     this.initializeControls();
+    
    }
  
    /**
     * Controls for Settings Component
     */
-  public controls: Array<ControlBase<any>>;
+  public controls: Array<ControlBase<any>> = Array();
   public bitcoinWallet :Array<ControlBase<any>>;
 
   public bitcoinAddressControls : Array<ControlBase<any>>;
@@ -30,70 +31,63 @@ export class SettingsService {
   /**
    * Initialize Controls for Setting Form
    */
-  private initializeControls() {
-    this.controls = [
-      new ControlTextbox({
-        key: 'username',
-        label: 'Username',
-        placeholder: 'Username',
-        value: '',
-        type: 'textbox',
-        required: true,
-        class: 'col-md-2 col-form-label',
-        labelclass: 'form-control',
-        order: 1
-      }),
-      new ControlTextbox({
-        key: 'firstname',
-        label: 'First Name',
-        placeholder: 'First Name',
-        value: '',
-        type: 'textbox',
-        required: true,
-        class: 'col-md-2 col-form-label',
-        labelclass: 'form-control',
-        order: 2
-      }),
-      new ControlTextbox({
-        key: 'lastname',
-        label: 'Last Name',
-        placeholder: 'Last Name',
-        value: '',
-        type: 'textbox',
-        required: true,
-        class: 'col-md-2 col-form-label',
-        labelclass: 'form-control',
-        order: 3
-      }),
-      new ControlTextbox({
-        key: 'email',
-        label: 'Email',
-        placeholder: 'Email',
-        value: '',
-        type: 'email',
-        required: true,
-        class: 'col-md-2 col-form-label',
-        labelclass: 'form-control',
-        order: 4
-      }),
-    ];
-  }
+  public initializeControls(entityProperties): any {
 
+    var value;
+    try{
+       value = entityProperties;
+    }
+    catch(err)
+    {
+        console.log(err);   
+        return null;
+    }
 
-    private initializeBitCoinWalletControls() {
-    this.bitcoinAddressControls = [
-      new ControlTextbox({
-        key: 'encryptpassword',
-        label: 'Private Encrypted Key Hash',
-        placeholder: 'Key Hash',
-        value: '',
-        type: 'textbox',
-        required: true,
-        class: 'col-md-2 col-form-label',
-        labelclass: 'form-control',
-        order: 1
-      }),
-    ];
+    // return null if there is no entittyProperities
+    if(entityProperties == null)
+    {
+       return null;
+    }
+
+    // iterate through object properties and create control
+    for(let i = 0 ; i < entityProperties.length; i++)
+    {
+      
+          let control = null;
+          try{
+
+            let obj = entityProperties[i];
+            let name = obj['name'];
+            let type = obj['type'];
+
+            switch(type)
+            {
+              case prop.entityProperties.Guid : 
+                  control = this._formService.initializeGuidNewControl(name, type);
+                  break;
+              case prop.entityProperties.Strign:
+                  control = this._formService.initializeStringNewControl(name, type);
+                  break;
+              case prop.entityProperties.DateTime:
+                  control = this._formService.initializeDateTimeNewControl(name, type);
+                  break;
+              default:
+                  control = Array();
+                
+            }
+           
+            if(control != null)
+            {               
+                // push new control in array
+                this.controls.push(control);
+            }
+          }
+          catch(err)
+          {
+            console.log(err);
+          }
+    }
+   
   }
   
 
@@ -120,6 +114,8 @@ export class SettingsService {
      ]);
   }
 
+
+  
   public createNewBitcoinAddress(model: any): Observable<any>{
     const url = CREATENEWBITCOINADDRESS;
      return this._dateService.post(url,model)

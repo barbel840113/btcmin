@@ -10,6 +10,7 @@ import {UPDATEUSERSETTINGS } from '../../constants/url';
 import { UserService } from '../users/user.service';
 
 
+
 @Injectable()
 export class ApplicationService {
   
@@ -145,6 +146,5 @@ export class ApplicationService {
         return null;
       }
    }
-
 
 }

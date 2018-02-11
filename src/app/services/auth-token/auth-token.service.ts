@@ -19,7 +19,7 @@ import { configTokenPost} from '../../constants/config';
 import { UserService } from '../../services/users/user.service';
 import { Store} from '@ngrx/store';
 import { AppState } from '../../state/app.state';
-
+import * as BtcBuddyAction from '../../state/btcbuddy.actions';
 
 @Injectable()
 export class AuthTokenService {
@@ -68,7 +68,7 @@ export class AuthTokenService {
                 this.applicationService.userProfileSubscription$.next(profile);
                 this.userService.userNameSubscription$.next(profile['name']);
                 //save role
-                this.store.dispatch({type : "TOKEN", paylod :{ tokens :  tokens.access_token}});
+                this.store.dispatch(new BtcBuddyAction.LoadTokenAction(tokens.access_token));
                 this.userService.userRoleSubscription$.next(profile.role);
                 this.applicationService.profileUserContainer$.next(profile);
                 this.applicationService.tokenSubscription$.next(tokens.access_token);  

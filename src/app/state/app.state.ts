@@ -1,11 +1,11 @@
 import { PersonalDetailsEntity } from '../models/personal-details'
 
 export interface AppState{
-    btcBuddyState : BtcBuddyState;
+    btcBuddyState : BtcBuddyAuthorizationState;
     userSettingsState : UserSettingsState
 }
 
-export interface BtcBuddyState{
+export interface BtcBuddyAuthorizationState{
     token : any;
 }
 

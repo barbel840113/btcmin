@@ -103,6 +103,9 @@ export class SettingsComponent implements OnInit, OnDestroy {
 
     this.personalDetailsState$.subscribe(res =>{
       console.log(res);
+      
+     this._settingsSettings.initializeControls(res['enbtityProperties']);
+      
     });
   }
 
@@ -111,6 +114,8 @@ export class SettingsComponent implements OnInit, OnDestroy {
    */
   private loadSettingsValues() {
   }
+
+
   /**
    * Submit Settings
    */
@@ -126,7 +131,7 @@ export class SettingsComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.userNameSubscription$.unsubscribe();
-    this.personalDetailsState$.unsubscribe();
+    //this.personalDetailsState$.unsubscribe();
 
   }
 
