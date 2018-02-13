@@ -27,7 +27,7 @@ import { Store } from '@ngrx/store';
 import { reducers} from '../state/app.reducer';
 import * as fromActions from '../state/app.actions';
 import * as btcBuddyArticle from '../state/btcbuddy.reducer';
-import { AppState , BtcBuddyState} from '../state/app.state';
+import { AppState , BtcBuddyAuthorizationState} from '../state/app.state';
 
 
 
@@ -70,7 +70,7 @@ export class LoginComponent implements OnInit {
     public authService :AuthTokenService,
     public snackBar: MatSnackBar,
     public dialogService :DialogAppService,
-    public store: Store<BtcBuddyState>
+    public store: Store<BtcBuddyAuthorizationState>
   ) {
       
   }

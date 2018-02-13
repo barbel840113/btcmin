@@ -9,13 +9,14 @@ import {Subscription} from 'rxjs/Subscription';
 import {  DataService } from '../data-service/data.service';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import * as prop from '../../constants/properties';
+import { ApplicationService } from '../application/application.service';
 
 @Injectable()
 export class SettingsService {
  
-  constructor(private _dateService :DataService, private _formService:FormControlService) {
-    
-    
+  constructor(
+      private _dateService :DataService, 
+      private _formService:FormControlService) { 
    }
  
    /**
@@ -26,6 +27,7 @@ export class SettingsService {
 
   public bitcoinAddressControls : Array<ControlBase<any>>;
 
+  public formControlSubscription$ : BehaviorSubject<any> = new BehaviorSubject([]);
   public isInternalLogin : boolean = true;
   
   /**
@@ -48,6 +50,7 @@ export class SettingsService {
     {
        return null;
     }
+    var tempArray = [];
 
     // iterate through object properties and create control
     for(let i = 0 ; i < entityProperties.length; i++)
@@ -79,7 +82,7 @@ export class SettingsService {
             if(control != null)
             {               
                 // push new control in array
-                this.controls.push(control);
+                tempArray.push(control);
             }
           }
           catch(err)
@@ -87,7 +90,12 @@ export class SettingsService {
             console.log(err);
           }
     }
-   
+    
+
+    return tempArray;
+    
+//subscribe new value
+ 
   }
   
 
@@ -97,6 +105,9 @@ export class SettingsService {
   public getUserInformationSettings() : Observable<any>{
       const url = GETUSERSETTINGINFORMATION;
       return this._dateService.get(url)
+      .do((res) =>   {
+         this.formControlSubscription$.next(res);
+        })
       .catch(res =>Observable.throw(res));
       
   }

@@ -1,6 +1,7 @@
-<div class="example-container">
-    <mat-form-field *ngFor="let control of controls" >
+<form class="example-container" [formGroup]="perDetailsForm" *ngIf="this.controlPersonalDetails.length != 0" >
+    <mat-form-field *ngFor="let control of controlPersonalDetails" >
       <input matInput placeholder="{{control.placeholder}}" [formControlName]="control.key" type="{{control.type}}" required>
       <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
-    </mat-form-field>        
-  </div>
+    </mat-form-field>    
+    {{this.perDetailsForm.value | json}}    
+</form>

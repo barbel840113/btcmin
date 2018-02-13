@@ -23,7 +23,6 @@ import { PersonalDetailsEntity } from '../../models/personal-details';
   templateUrl: './settings.component.html',
   styleUrls: ['./settings.component.scss'],
   animations: [routerTransition()],
-  changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None
 })
 export class SettingsComponent implements OnInit, OnDestroy {
@@ -89,24 +88,9 @@ export class SettingsComponent implements OnInit, OnDestroy {
 
 
     this.userNameSubscription$ = this.userService.getUSerSettings().subscribe(
-      (res) => {
-        if (res != null) {
-          var result = this._applicationService.converResponseToJSONObject(res);
-          this.store.dispatch(new PersonalDetailsStoreActions.LoadPersonalDetailsAction(result));
-        }
-        console.log(res);
-      },
+      (res) => { },
       (error: any) => { }
-    );
-
-    this.personalDetailsState$ = this.store.select((state: AppState) => state.userSettingsState.personalDetails);
-
-    this.personalDetailsState$.subscribe(res =>{
-      console.log(res);
-      
-     this._settingsSettings.initializeControls(res['enbtityProperties']);
-      
-    });
+    );     
   }
 
   /**
