@@ -47,9 +47,10 @@ export class ApplicationService {
 
   public isUserloggedSubscription$: BehaviorSubject<any> = new BehaviorSubject(false);
 
-  constructor(private dataService : DataService, 
-    private _settingService: SettingsService ) {
-      
+  constructor(
+    private dataService : DataService, 
+    private _settingService: SettingsService,
+    private _userService: UserService ) {      
  
    }
 
@@ -121,7 +122,7 @@ export class ApplicationService {
     return  Observable.forkJoin(
          this.getBTCUSDFromBitstamp(),
          this.getKrakenCurrency(),
-         this._settingService.loadAllValuds()
+         this._userService.getAllUserSettingsValues()
       );
    }
 

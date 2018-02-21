@@ -12,7 +12,6 @@ import { ServicesModule } from './services/services.module';
 import { SharedModule } from './shared/shared.module';
 import { BaseRequestOptions, Http } from "@angular/http";
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { InMemHeroService } from './services/heroes/in-memory-data.service';
 import { LoadingbarComponent } from './shared/loadingbar/loadingbar.component';
 import { PipesModule  } from './pipes/pipes.module';
 import {NoopAnimationsModule} from '@angular/platform-browser/animations';

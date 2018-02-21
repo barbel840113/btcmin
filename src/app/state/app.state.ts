@@ -11,4 +11,5 @@ export interface BtcBuddyAuthorizationState{
 
 export interface UserSettingsState{
     personalDetails : PersonalDetailsEntity;
+    userName : string;
 }

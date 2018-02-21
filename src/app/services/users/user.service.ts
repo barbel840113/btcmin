@@ -8,34 +8,39 @@ import { FormControlService } from '../formcontrol/form-control.service';
 import { FormGroup } from '@angular/forms/src/model';
 import { ControlBase } from '../../shared/forms/control-base';
 import { ControlTextbox } from '../../shared/forms/control-textbox';
+import * as UserStateActions from '../../state/userservice.actions';
+import { Store} from '@ngrx/store';
+import { AppState } from '../../state/app.state';
 
 @Injectable()
 export class UserService {
 
-  //User Role
-  public userRoleSubscription$: BehaviorSubject<any> = new BehaviorSubject('');
-lo
-  public userNameSubscription$: BehaviorSubject<any> = new BehaviorSubject('');
-
-  public primaryAddress$: BehaviorSubject<any>
+  public primaryAddress$: BehaviorSubject<any> = new BehaviorSubject("");
 
   // ARRAY OF CONTROLS
   public formContorls: Array<ControlBase<any>>;
-  constructor(private appService: ApplicationService, private dataService: DataService) {
+  constructor(
+    private dataService: DataService,
+    private store : Store<AppState> ) {
 
   }
 
   public getUSerSettings(): Observable<any> {
     const url = GETUSERSETTINGS;
 
-    return this.dataService.get(url).do(
-      (res) => {
+    return this.dataService.get(url)
+        .catch(err => Observable.throw(err))
+        .do(res => {
+          this.primaryAddress$.next(res);
+          this.store.dispatch(new UserStateActions.LoadPersonalDetailsAction(res));
+        });
+  }
 
-        // generate form
-        this.generatePersonalDetailsForm(res)
-        return res;
-      }
-    );
+  public getAllUserSettingsValues() : Observable<any>
+  {
+    return Observable.forkJoin([
+      this.getUSerSettings()
+    ]);
   }
 
   /**

@@ -16,20 +16,10 @@ export class SettingsService {
  
   constructor(
       private _dateService :DataService, 
-      private _formService:FormControlService) { 
-   }
- 
-   /**
-    * Controls for Settings Component
-    */
-  public controls: Array<ControlBase<any>> = Array();
-  public bitcoinWallet :Array<ControlBase<any>>;
+      private _formService:FormControlService) {      
+   } 
 
-  public bitcoinAddressControls : Array<ControlBase<any>>;
 
-  public formControlSubscription$ : BehaviorSubject<any> = new BehaviorSubject([]);
-  public isInternalLogin : boolean = true;
-  
   /**
    * Initialize Controls for Setting Form
    */
@@ -97,39 +87,5 @@ export class SettingsService {
 //subscribe new value
  
   }
-  
 
-  /**
-   * Get UserInformation Settings
-   */
-  public getUserInformationSettings() : Observable<any>{
-      const url = GETUSERSETTINGINFORMATION;
-      return this._dateService.get(url)
-      .do((res) =>   {
-         this.formControlSubscription$.next(res);
-        })
-      .catch(res =>Observable.throw(res));
-      
-  }
-
-
-
-  /**
-   * Load All Valus for Settings
-   */
-  public loadAllValuds() :Observable<any>
-  {
-     return Observable.forkJoin([
-     
-      
-     ]);
-  }
-
-
-  
-  public createNewBitcoinAddress(model: any): Observable<any>{
-    const url = CREATENEWBITCOINADDRESS;
-     return this._dateService.post(url,model)
-     .catch(res => Observable.throw(res));
-  }
 }

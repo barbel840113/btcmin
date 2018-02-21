@@ -2,8 +2,6 @@ import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthenticationService } from './authentication/authentication.service';
-import { InMemHeroService } from './heroes/in-memory-data.service';
-import { HeroesService} from './heroes/heroes.service';
 import { AuthTokenService } from './auth-token/auth-token.service';
 import { UtilityService} from './utility/utility.service';
 import { AuthenticationGuard } from '../guards/authentication.guard';
@@ -38,8 +36,6 @@ export class ServicesModule{
             providers:[
                            FormControlService, 
                            AuthenticationService,
-                           HeroesService, 
-                           InMemHeroService,
                            FormService,
                            AuthTokenService,
                            UtilityService,

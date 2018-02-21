@@ -20,6 +20,7 @@ import { UserService } from '../../services/users/user.service';
 import { Store} from '@ngrx/store';
 import { AppState } from '../../state/app.state';
 import * as BtcBuddyAction from '../../state/btcbuddy.actions';
+import * as UserActions from '../../state/userservice.actions';
 
 @Injectable()
 export class AuthTokenService {
@@ -66,10 +67,10 @@ export class AuthTokenService {
                 const profile = this.jwtHelper.decodeToken(tokens.access_token) as ProfileModel;
                 localStorage.setItem('auth-tokens', JSON.stringify(tokens.access_token));
                 this.applicationService.userProfileSubscription$.next(profile);
-                this.userService.userNameSubscription$.next(profile['name']);
+                this.store.dispatch(new UserActions.LoadUserName(profile['name']));
                 //save role
                 this.store.dispatch(new BtcBuddyAction.LoadTokenAction(tokens.access_token));
-                this.userService.userRoleSubscription$.next(profile.role);
+              //  this.userService.userRoleSubscription$.next(profile.role);
                 this.applicationService.profileUserContainer$.next(profile);
                 this.applicationService.tokenSubscription$.next(tokens.access_token);  
                 this.applicationService.isUserloggedSubscription$.next(true);                       

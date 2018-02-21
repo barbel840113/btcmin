@@ -28,7 +28,6 @@ export class PersonalDetailsComponent implements OnInit {
 
   public controlPersonalDetails : any = [];
 
-  
 
   
   constructor(private formControlService:  FormControlService, 
@@ -38,7 +37,7 @@ export class PersonalDetailsComponent implements OnInit {
     private appSetting : ApplicationService,
     private settinsService : SettingsService) {
 
-      this.personalDetailsSubscription$ = this.settinsService.formControlSubscription$.subscribe(
+      this.personalDetailsSubscription$ = this.userService.primaryAddress$.subscribe(
         (res) =>{
           if(res.length != 0)
           {

@@ -3,6 +3,7 @@ import { Action } from '@ngrx/store';
 
 export const LOADPERSONALDETAILS = "LOADPERSONALDETAILS";
 export const UPDATEPERSONALDETAILS = "UPDATEPERSONALDETAILS";
+export const LOADUSERNAME = "LOADUSERNMAE";
 
 export class LoadPersonalDetailsAction implements Action{
    readonly type = LOADPERSONALDETAILS;
@@ -21,6 +22,15 @@ export class UpdatePersonalDetails implements Action{
     }
 }
 
+export class LoadUserName implements Action{
+    readonly type = LOADUSERNAME;
+
+    constructor(public payload :any)
+    {
+        this.payload = payload;
+    }
+}
 
 
-export type All = LoadPersonalDetailsAction | UpdatePersonalDetails;
+
+export type All = LoadPersonalDetailsAction | UpdatePersonalDetails | LoadUserName;
