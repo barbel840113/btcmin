@@ -10,6 +10,8 @@ import { Router, NavigationEnd } from '@angular/router';
 import { Subject} from 'rxjs/Subject';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { UserService} from '../../services/users/user.service';
+import { Store} from '@ngrx/store';
+import { AppState } from '../../state/app.state';
 
 @Component({
   selector: 'app-header-admin',
@@ -55,7 +57,8 @@ export class HeaderAdminComponent implements OnInit, OnDestroy {
     public _element: ElementRef,
     public _renderer: Renderer2,
     public _overlayContainer: OverlayContainer,
-    public _userService :UserService
+    public _userService :UserService,
+    private store: Store<AppState>
   ) {
     this.shorOrHide = false;
    
@@ -68,7 +71,7 @@ export class HeaderAdminComponent implements OnInit, OnDestroy {
           
         });
 
-    this.roleSubscription$ = this._userService.userRoleSubscription$.subscribe(res => { this.roleUserName = res;});
+  //  this.roleSubscription$ = this._userService.userRoleSubscription$.subscribe(res => { this.roleUserName = res;});
 
     this.profileSubscribe$ = this._applicationService.profileUserContainer$.subscribe(
       (result) =>{
@@ -80,14 +83,14 @@ export class HeaderAdminComponent implements OnInit, OnDestroy {
       (error : any) =>{}
     );
 
-  this.userNameSubscription$ = this._userService.userNameSubscription$.subscribe(
-    (res) => 
-    {
-      this.username = res;
-    },
-    (error :any) =>{
+  // this.userNameSubscription$ = this._userService.userNameSubscription$.subscribe(
+  //   (res) => 
+  //   {
+  //     this.username = res;
+  //   },
+  //   (error :any) =>{
       
-    });
+  //   });
 
   
 
@@ -102,8 +105,8 @@ export class HeaderAdminComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.profileSubscribe$.unsubscribe();  
     this.timer$.unsubscribe();
-    this.roleSubscription$.unsubscribe();
-    this.userNameSubscription$.unsubscribe();
+   // this.roleSubscription$.unsubscribe();
+    //this.userNameSubscription$.unsubscribe();
     
   }
 

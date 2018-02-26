@@ -52,15 +52,7 @@ export class AccountService {
         this.authTokens.unsubscribeRefresh();
         this.appService.expirationDate$.next('');
         this.appService.showTImeoutMessage$.next(false);
-
-        //check if user was logged internally or using AAD
-        if(this.settingService.isInternalLogin)
-        {
-                
-        }
-        else{
-        }
-       
+             
         this.utilityService.navigateToSignIn();
     }
 

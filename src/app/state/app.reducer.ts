@@ -1,12 +1,12 @@
 import { ActionReducerMap, ActionReducer, MetaReducer } from '@ngrx/store';
 import { AppState } from './app.state';
-import * as btuBuddyReducer from './btcbuddy.reducer';
+import * as authReducer from './authState.reducer';
 import { environment } from '../../environments/environment';
 import { reduce } from 'rxjs/operators/reduce';
 import * as userSettingsReducer from './userservice.reducer';
 
 export const reducers : ActionReducerMap<AppState> = {
-    btcBuddyState : btuBuddyReducer.reducer,
+    authTokenState : authReducer.reducer,
     userSettingsState: userSettingsReducer.reducer
 };
 

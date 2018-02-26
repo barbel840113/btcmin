@@ -23,14 +23,6 @@ import {MatSnackBar} from '@angular/material';
 import { AuthTokenService } from '../services/auth-token/auth-token.service';
 import { DialogAppService } from '../services/dialogModal/dialogModal.service';
 
-import { Store } from '@ngrx/store';
-import { reducers} from '../state/app.reducer';
-import * as fromActions from '../state/app.actions';
-import * as btcBuddyArticle from '../state/btcbuddy.reducer';
-import { AppState , BtcBuddyAuthorizationState} from '../state/app.state';
-
-
-
 @Component({
   selector: 'appc-login',
   templateUrl: './login.component.html',
@@ -69,8 +61,7 @@ export class LoginComponent implements OnInit {
     public  vcRef  : ViewContainerRef,
     public authService :AuthTokenService,
     public snackBar: MatSnackBar,
-    public dialogService :DialogAppService,
-    public store: Store<BtcBuddyAuthorizationState>
+    public dialogService :DialogAppService
   ) {
       
   }

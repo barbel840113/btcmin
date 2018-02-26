@@ -1,4 +1,4 @@
-import { Component, OnInit , Input, ChangeDetectionStrategy, ChangeDetectorRef} from '@angular/core';
+import { Component, OnInit ,OnDestroy, Input, ChangeDetectionStrategy, ChangeDetectorRef} from '@angular/core';
 import {FormControl, Validators} from '@angular/forms';
 import { UserService } from '../../../services/users/user.service';
 import { FormControlService } from '../../../services/formcontrol/form-control.service';
@@ -6,11 +6,12 @@ import { FormGroup } from '@angular/forms/src/model';
 import { ControlBase } from '../../../shared/forms/control-base';
 import { ControlTextbox } from '../../../shared/forms/control-textbox';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs/Observable';
+import {  Subscribable } from 'rxjs/Observable';
 import * as PersonalDetails from '../../../state/userservice.actions';
 import { AppState} from '../../../state/app.state';
 import { SettingsService } from '../../../services/settings/settings.service';
 import {  ApplicationService } from '../../../services/application/application.service';
+import { Observable, Subject, BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-personal-details',
@@ -18,8 +19,9 @@ import {  ApplicationService } from '../../../services/application/application.s
   styleUrls: ['./personal-details.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class PersonalDetailsComponent implements OnInit {
+export class PersonalDetailsComponent implements OnInit, OnDestroy {
 
+ 
   email = new FormControl('', [Validators.required, Validators.email]);
 
   public perDetailsForm : FormGroup;
@@ -62,6 +64,20 @@ export class PersonalDetailsComponent implements OnInit {
     return this.email.hasError('required') ? 'You must enter a value' :
         this.email.hasError('email') ? 'Not a valid email' :
             '';
+  }
+
+  ngOnDestroy(): void {
+    if(this.personalDetailsSubscription$ instanceof BehaviorSubject)
+    {
+      try{
+        this.personalDetailsSubscription$.unsubscribe();
+      }
+      catch(error)
+      {
+        console.log(error);
+      }
+       
+    }
   }
 
 }

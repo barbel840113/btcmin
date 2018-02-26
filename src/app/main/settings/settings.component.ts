@@ -123,22 +123,6 @@ export class SettingsComponent implements OnInit, OnDestroy {
   //create a form
   private createSettingsForm() {
 
-    //settings controls
-    this.settingsFormControlsContainer = this._settingsSettings.controls;
-
-    //bitcoin address controls
-    this.bitcoinsFormControlsContainer = this._settingsSettings.bitcoinAddressControls;
-
-    this._settingsSettings.controls.forEach(element => {
-      this.errorHandler[element.key] = '';
-    });
-
-    this._settingsSettings.controls.forEach(element => {
-      this.handlerEvent[element.key] = { 'required': 'Required', 'tab': 'tab-settings' };
-    });
-    //initialize form
-    this.settingsForm = this.formControlService.toControlGroup(this.settingsFormControlsContainer);
-    this.bitcoinAddressForm = this.formControlService.toControlGroup(this.bitcoinsFormControlsContainer);
   }
 
   ngOnInit() {

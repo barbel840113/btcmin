@@ -11,21 +11,31 @@ import { Subject } from 'rxjs/Subject';
 import { AuthTokenService } from '../auth-token/auth-token.service';
 import { UtilityService } from '../utility/utility.service';
 import { DataServiceOptions } from './data.service.options';
+import { Store } from '@ngrx/store';
+import * as authStateTokenMethod from '../../state/authState.reducer';
+import { TokenState, UserSettingsState, AppState } from '../../state/app.state';
 
 @Injectable()
 export class DataService {
 
     public isUserExternalLoggin : boolean = false;
-
+    public isInternalLogin : boolean = false;
     // Define the internal Subject we'll use to push the command count
     public pendingCommandsSubject = new Subject<number>();
     public pendingCommandCount = 0;
 
+    public token$: Observable<any>;
+
+    private tokenValue  : string;
+
     // Provide the *public* Observable that clients can subscribe to
     public pendingCommands$: Observable<number>;
 
-    constructor(public http: Http, 
+    constructor(
+        public http: Http, 
+        private store: Store<AppState>,
         public us: UtilityService) {
+
         this.pendingCommands$ = this.pendingCommandsSubject.asObservable();
     }
 

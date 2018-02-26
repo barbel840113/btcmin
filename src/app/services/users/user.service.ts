@@ -31,8 +31,16 @@ export class UserService {
     return this.dataService.get(url)
         .catch(err => Observable.throw(err))
         .do(res => {
-          this.primaryAddress$.next(res);
-          this.store.dispatch(new UserStateActions.LoadPersonalDetailsAction(res));
+          return res
+        }).map(res =>{ return res.json()})
+        .flatMap(res =>{
+          
+          //check if res is ok then assing
+          let parseResult = JSON.parse(res);
+
+          //subscribe into store
+          this.store.dispatch(new UserStateActions.LoadPersonalDetailsAction(parseResult));
+          return Observable.of(res);
         });
   }
 

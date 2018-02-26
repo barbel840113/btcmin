@@ -19,8 +19,9 @@ import { configTokenPost} from '../../constants/config';
 import { UserService } from '../../services/users/user.service';
 import { Store} from '@ngrx/store';
 import { AppState } from '../../state/app.state';
-import * as BtcBuddyAction from '../../state/btcbuddy.actions';
+import * as AuthAction from '../../state/authState.actions';
 import * as UserActions from '../../state/userservice.actions';
+import { AuthTokenModel} from '../../models/auth-tokens.model';
 
 @Injectable()
 export class AuthTokenService {
@@ -64,13 +65,22 @@ export class AuthTokenService {
 
                 this.applicationService.authTokensSubscription$.next(tokens);
 
+                let tokenModel : AuthTokenModel  = {
+                    access_token : tokens.access_token,
+                    token_type : tokens.token_type,
+                    expiration_date : tokens.expiration_date,
+                    id_token : "",
+                    expires_in : tokens.expires_in,
+                    refresh_token : ""
+                };
+
                 const profile = this.jwtHelper.decodeToken(tokens.access_token) as ProfileModel;
                 localStorage.setItem('auth-tokens', JSON.stringify(tokens.access_token));
                 this.applicationService.userProfileSubscription$.next(profile);
                 this.store.dispatch(new UserActions.LoadUserName(profile['name']));
-                //save role
-                this.store.dispatch(new BtcBuddyAction.LoadTokenAction(tokens.access_token));
-              //  this.userService.userRoleSubscription$.next(profile.role);
+
+                this.store.dispatch(new AuthAction.LoadAllTokenInfoIntoStore(tokenModel));
+                //this.userService.userRoleSubscription$.next(profile.role);
                 this.applicationService.profileUserContainer$.next(profile);
                 this.applicationService.tokenSubscription$.next(tokens.access_token);  
                 this.applicationService.isUserloggedSubscription$.next(true);                       
@@ -99,17 +109,15 @@ export class AuthTokenService {
      */
     public storeAzureADDTokenInStore(tokens : any)
     {   
-        this.dataService.isUserExternalLoggin = true;
-        this.settingsService.isInternalLogin = false;
+        this.dataService.isUserExternalLoggin = true;   
+        this.dataService.isInternalLogin = false;    
          //store user external login
     
         const profile = (tokens.profile) as ProfileModel;
         this.applicationService.profileUserContainer$.next(profile);
+           
         
-        this.applicationService.profileUserContainer$.next(profile);
-        
-        localStorage.setItem('auth-tokens', tokens.token);
-        
+        localStorage.setItem('auth-tokens', tokens.token);        
        
     }
 
