@@ -122,7 +122,7 @@ export class ApplicationService {
     return  Observable.forkJoin(
          this.getBTCUSDFromBitstamp(),
          this.getKrakenCurrency(),
-         this._userService.getAllUserSettingsValues()
+         //this._userService.getAllUserSettingsValues()
       );
    }
 

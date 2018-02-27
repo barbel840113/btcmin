@@ -36,8 +36,8 @@ export class UserService {
         .flatMap(res =>{
           
           //check if res is ok then assing
-          let parseResult = JSON.parse(res);
-
+          let parseResult = res;
+          
           //subscribe into store
           this.store.dispatch(new UserStateActions.LoadPersonalDetailsAction(parseResult));
           return Observable.of(res);

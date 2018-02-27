@@ -114,6 +114,8 @@ export class LoginComponent implements OnInit {
          
         },
         (errors: any) =>{ 
+
+          this.dialogService.closedDialog('/main');
          if(errors.status == 0)
          {
           this.snackBar.open("You are in offline mode", "Close" , {

@@ -8,6 +8,7 @@ var personalDetails : PersonalDetailsEntity = {} as PersonalDetailsEntity;
 personalDetails.postCode = "";
 personalDetails.street1 = "";
 personalDetails.street2 = "";
+personalDetails.entityProperties = [];
 
 export const initialState : UserSettingsState = {personalDetails : personalDetails, userName : ""};
 

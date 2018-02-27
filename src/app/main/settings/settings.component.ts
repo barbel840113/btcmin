@@ -86,19 +86,9 @@ export class SettingsComponent implements OnInit, OnDestroy {
         this._toastService.pop('error', 'BTCApp Error', error);
       });
 
-
-    this.userNameSubscription$ = this.userService.getUSerSettings().subscribe(
-      (res) => { },
-      (error: any) => { }
-    );     
+     this.loadSettingsValues();
+ 
   }
-
-  /**
-   * Load All Setttings
-   */
-  private loadSettingsValues() {
-  }
-
 
   /**
    * Submit Settings
@@ -119,6 +109,11 @@ export class SettingsComponent implements OnInit, OnDestroy {
 
   }
 
+  private loadSettingsValues()
+  {
+    this.userService.getAllUserSettingsValues().subscribe();
+  }
+
 
   //create a form
   private createSettingsForm() {
@@ -126,18 +121,6 @@ export class SettingsComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-
-
-    this.loadSettingsValues();
-
-
-    //this.createSettingsForm();
-
-    //initialize layout of personal details
-    // this.initializeLayout();
-
-    //bind valud to the form
-    //this.bindUserSettingsValueInToForm();
 
   }
 

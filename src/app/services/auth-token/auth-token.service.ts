@@ -21,7 +21,6 @@ import { Store} from '@ngrx/store';
 import { AppState } from '../../state/app.state';
 import * as AuthAction from '../../state/authState.actions';
 import * as UserActions from '../../state/userservice.actions';
-import { AuthTokenModel} from '../../models/auth-tokens.model';
 
 @Injectable()
 export class AuthTokenService {
