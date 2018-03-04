@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, Subject, BehaviorSubject } from 'rxjs';
 import { ApplicationService } from '../application/application.service';
-import { GETUSERSETTINGS } from '../../constants/url';
+import { GETUSERSETTINGS, UPDATEPRIMARYADDRESS } from '../../constants/url';
 import { DataService } from '../data-service/data.service';
 import { ReturnStatement } from '@angular/compiler/src/output/output_ast';
 import { FormControlService } from '../formcontrol/form-control.service';
@@ -49,6 +49,11 @@ export class UserService {
     return Observable.forkJoin([
       this.getUSerSettings()
     ]);
+  }
+
+  public updateUserSettings(data : any): Observable<any>{
+     const url = UPDATEPRIMARYADDRESS;
+     return this.dataService.put(url,data);
   }
 
   /**

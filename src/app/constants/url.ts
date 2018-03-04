@@ -20,4 +20,5 @@ export const GETBUSINESSUNIT = HOSTAPI + 'api/AppSettings/getbusinessunit';
 
 //get user settings
 export const GETUSERSETTINGS = HOSTAPI + 'api/AppSettings/getpersonaldetails';
+export const UPDATEPRIMARYADDRESS = HOSTAPI + 'api/AppSettings/updatepersonaldetails';
 
