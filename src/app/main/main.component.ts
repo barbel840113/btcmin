@@ -22,7 +22,7 @@ import { AuthTokenService } from '../services/auth-token/auth-token.service';
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-   encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None
 
 })
 export class MainComponent implements OnInit, OnDestroy {

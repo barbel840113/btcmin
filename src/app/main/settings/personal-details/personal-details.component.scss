@@ -5,3 +5,7 @@
   .example-container > * {
     width: 100%;
   }
+
+  .mat-card{
+    height: -webkit-fill-available;
+  }

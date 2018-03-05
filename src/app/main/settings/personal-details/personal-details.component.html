@@ -1,8 +1,17 @@
-<form class="example-container" [formGroup]="perDetailsForm" *ngIf="this.controlPersonalDetails.length != 0" >
-    <mat-form-field *ngFor="let control of controlPersonalDetails"  >
-      <input matInput placeholder="{{control.placeholder}}" [formControlName]="control.key" type="{{control.type}}" required>
-      <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
-    </mat-form-field>    
-    {{this.perDetailsForm.value | json}}    
-    <button mat-raised-button color="primary" (click)="this.submitPersonalDetails()" >Primary</button>
-</form>
+<!-- Form Personal Details -->
+<div *ngIf="!this.showLoadingBar" class="container">
+    <form  class="example-container" [formGroup]="perDetailsForm" *ngIf="this.controlPersonalDetails.length != 0">
+        <mat-form-field *ngFor="let control of controlPersonalDetails">
+            <input matInput placeholder="{{control.placeholder}}" [formControlName]="control.key" type="{{control.type}}" required>
+            <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+        </mat-form-field>
+        {{this.perDetailsForm.value | json}}
+        <button mat-raised-button color="primary" (click)="this.submitPersonalDetails()">Submit</button>
+    </form>
+</div>
+
+<!-- Spinner while update and load data from server -->
+<div class="container" *ngIf="this.showLoadingBar">
+    <label>Loading ...</label>
+    <mat-progress-bar mode="query"></mat-progress-bar>
+</div>

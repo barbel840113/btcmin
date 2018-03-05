@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, Input, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input, ChangeDetectionStrategy, ChangeDetectorRef, ViewEncapsulation } from '@angular/core';
 import { FormControl, Validators, FormGroup } from '@angular/forms';
 import { UserService } from '../../../services/users/user.service';
 import { FormControlService } from '../../../services/formcontrol/form-control.service';
@@ -15,26 +15,37 @@ import * as UserActions from '../../../state/userservice.actions';
 import * as UserRecuders from '../../../state/userservice.reducer';
 import { UserSettingsState } from '../../../state/app.state';
 import {MatButtonModule} from '@angular/material/button';
+import {MatSnackBar} from '@angular/material';
 
 @Component({
   selector: 'app-personal-details',
   templateUrl: './personal-details.component.html',
   styleUrls: ['./personal-details.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None
 })
 export class PersonalDetailsComponent implements OnInit, OnDestroy {
 
 
   email = new FormControl('', [Validators.required, Validators.email]);
 
+  // personal detail Form
   public perDetailsForm: FormGroup;
 
+  // subscribe details from Store => Personal Details
   public personalDetailsSubscription$: any;
 
+  // Observable => Personal Details
   public personalDetails$: Observable<any>
 
+  // Container for Controls to be renders
   public controlPersonalDetails: any = [];
 
+  // show or hide loading bar
+  public showLoadingBar: boolean = true;
+
+  // set label dynamically : string = "";
+  public showLoadingBarLabel = "Loading Record";
 
 
   constructor(private formControlService: FormControlService,
@@ -42,6 +53,7 @@ export class PersonalDetailsComponent implements OnInit, OnDestroy {
     private store: Store<AppState>,
     private cd: ChangeDetectorRef,
     private appSetting: ApplicationService,
+    public snackBar: MatSnackBar,
     private settinsService: SettingsService) {
 
     this.personalDetailsSubscription$ = this.userService.primaryAddress$.subscribe(
@@ -64,8 +76,10 @@ export class PersonalDetailsComponent implements OnInit, OnDestroy {
       this.perDetailsForm = this.formControlService.toControlGroup(this.controlPersonalDetails);
 
       this.bindValueToPersonalDetailsForm(this.perDetailsForm, res);
-      console.log(res);
 
+      this.showLoadingBar = false;
+      console.log(res);
+      
       this.cd.markForCheck();
     });
 
@@ -158,7 +172,30 @@ export class PersonalDetailsComponent implements OnInit, OnDestroy {
      {
          var dataValue = this.perDetailsForm.value;
 
-         this.userService.updateUserSettings(dataValue).subscribe();
+         // show loading bar
+         this.showLoadingBarLabel = "Updating Record";
+         this.showLoadingBar = true;
+         // if the user personal details have been updated then we subscribe to server
+         this.userService.updateUserSettings(dataValue).subscribe(
+           res =>{
+            this.snackBar.open("The Details have been updated", "Close" , {
+              duration: 2000,
+            });
+
+            // hide loading bar
+            this.showLoadingBar = false;
+            this.cd.markForCheck();
+           },
+           (error:  any) =>{
+              console.log(error);
+              this.snackBar.open("There was error with updateding Personal Details", "Close" , {
+                duration: 2000,
+              });
+
+           }
+         );
+
+
          console.log(dataValue);
      }
  
