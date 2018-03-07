@@ -75,6 +75,13 @@ export class AuthTokenService {
 
                 const profile = this.jwtHelper.decodeToken(tokens.access_token) as ProfileModel;
                 localStorage.setItem('auth-tokens', JSON.stringify(tokens.access_token));
+
+                //decode token
+                const tokenInfor = this.jwtHelper.decodeToken(tokens.access_token);
+
+                //subscribe roles
+                this.store.dispatch(new AuthAction.LoadUserRoles(tokenInfor.role));
+                
                 this.applicationService.userProfileSubscription$.next(profile);
                 this.store.dispatch(new UserActions.LoadUserName(profile['name']));
 

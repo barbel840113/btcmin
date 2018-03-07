@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, Subject, BehaviorSubject } from 'rxjs';
 import { ApplicationService } from '../application/application.service';
-import { GETUSERSETTINGS, UPDATEPRIMARYADDRESS } from '../../constants/url';
+import { GETUSERSETTINGS, UPDATEPRIMARYADDRESS, CREATETIER1MODEL, GETUSERTIER1MODEL } from '../../constants/url';
 import { DataService } from '../data-service/data.service';
 import { ReturnStatement } from '@angular/compiler/src/output/output_ast';
 import { FormControlService } from '../formcontrol/form-control.service';
@@ -91,5 +91,20 @@ export class UserService {
 
     }
 
+  }
+
+  /**
+   * Send request to create tier1 model
+   */
+  public createTier1ModelForUser() : Observable<any>
+  {
+      const url = CREATETIER1MODEL ;
+      return this.dataService.post(url);
+  }
+
+  public getTier1ModelForUser() : Observable<any>
+  {
+      const url = GETUSERTIER1MODEL;
+      return this.dataService.get(url);
   }
 }

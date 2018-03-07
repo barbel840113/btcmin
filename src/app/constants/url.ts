@@ -22,3 +22,8 @@ export const GETBUSINESSUNIT = HOSTAPI + 'api/AppSettings/getbusinessunit';
 export const GETUSERSETTINGS = HOSTAPI + 'api/AppSettings/getpersonaldetails';
 export const UPDATEPRIMARYADDRESS = HOSTAPI + 'api/AppSettings/updatepersonaldetails';
 
+//create tier1 model
+export const CREATETIER1MODEL = HOSTAPI + 'api/AppSettings/createTier1Settings';
+//get tier1 model user settings
+export const GETUSERTIER1MODEL = HOSTAPI + 'api/AppSettings/getTier1Settings';
+

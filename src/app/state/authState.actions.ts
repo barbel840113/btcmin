@@ -3,6 +3,16 @@ import { AuthTokenModel} from '../models/auth-tokens.model';
 
 export const LOADALLTOKENINFOINTOSTORE ="LOADALLTOKENINFOINTOSTORE";
 export const LOADTOKENINTOSTOREONLY = "LOADTOKENINTOSTOREONLY";
+export const LOADUSERROLES = "LOADUSERROLES";
+
+export class LoadUserRoles implements Action{
+     readonly type = LOADUSERROLES;
+
+     constructor(public payload: any)
+     { 
+         this.payload = payload;
+     }
+}
 
 export class LoadAllTokenInfoIntoStore implements Action{
     
@@ -24,4 +34,4 @@ export class LoadTokenDetailsOnly implements Action{
     }
 }
 
-export type All = LoadAllTokenInfoIntoStore | LoadTokenDetailsOnly;
+export type All = LoadAllTokenInfoIntoStore | LoadTokenDetailsOnly | LoadUserRoles;

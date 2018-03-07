@@ -12,5 +12,10 @@ export interface UserSettingsState{
 }
 
 export interface TokenState{
-    token_info : AuthTokenModel
+    token_info : AuthTokenModel,
+    userRoles : UserRoleState
+}
+
+export interface UserRoleState{
+    roles : [""]
 }
