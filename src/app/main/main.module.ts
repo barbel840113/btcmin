@@ -27,7 +27,7 @@ import { UserOverviewComponent } from './user-overview/user-overview.component';
 import {FlexLayoutModule} from "@angular/flex-layout";
 import {  DragulaModule } from 'ng2-dragula';
 import { PersonalDetailsComponent } from './settings/personal-details/personal-details.component';
-
+import { UserService } from '../services/users/user.service';
 
 @NgModule({
   imports: [
@@ -61,7 +61,7 @@ import { PersonalDetailsComponent } from './settings/personal-details/personal-d
     UserOverviewComponent,
     PersonalDetailsComponent
   ],
-  providers:[ {provide: OverlayContainer, useClass: FullscreenOverlayContainer}],
+  providers:[ {provide: OverlayContainer, useClass: FullscreenOverlayContainer}, UserService],
   entryComponents:[MessageFormComponent]
 })
 

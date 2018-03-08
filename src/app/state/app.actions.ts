@@ -1,21 +1,15 @@
 import { Action } from '@ngrx/store';
 
 
-export const TOKEN = "TOKEN";
-export const TELLME = "TELLME";
+export const CLEARME = "CLEARME";
 
-export class TokenAction implements Action{
-   readonly type = TOKEN;
+export class Clear implements Action{
 
-   constructor(public payload : any){}
-}
+    readonly type = CLEARME;
 
-export class CallMe implements Action{
-    readonly type = TELLME;
-
-    constructor(public payload: ['sivi', 'talda']){
-        this.payload = payload;
+    constructor(public payload){
+        this.payload = undefined;
     }
 }
-
-export type All = TokenAction | CallMe;
+   
+export type All = Clear;

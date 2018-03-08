@@ -17,6 +17,11 @@ import { ApplicationService } from '../services/application/application.service'
 import { ToasterModule, ToasterService } from 'angular2-toaster';
 import { AccountService } from '../services/account/account.service';
 import { AuthTokenService } from '../services/auth-token/auth-token.service';
+import {  UserService } from '../services/users/user.service';
+import { DataService } from '../services/data-service/data.service';
+import { AppState } from '../state/app.state';
+import { Store } from '@ngrx/store';
+
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
@@ -51,7 +56,7 @@ export class MainComponent implements OnInit, OnDestroy {
 
   //cureency container
   public currencyContainer$;
-  public tokenRefreshSubscription$: any;
+  public tokenRefreshSubscription$: any; 
 
 
   constructor(
@@ -62,9 +67,12 @@ export class MainComponent implements OnInit, OnDestroy {
     public toasterService: ToasterService,
     public cd: ChangeDetectorRef,
     public vcRef: ViewContainerRef,
+    private dataService : DataService,
     public accountService: AccountService,
     public _element: ElementRef,
     public _renderer: Renderer2,
+    private store : Store<AppState>,
+    private userService : UserService,
     public _overlayContainer: OverlayContainer
   ) {
 
@@ -87,8 +95,6 @@ export class MainComponent implements OnInit, OnDestroy {
 
 
   ngOnInit(): void {
-
-
 
     //assign state
     this.authSubscribption$ = this.applicationService.profileUserContainer$.subscribe(
@@ -116,7 +122,9 @@ export class MainComponent implements OnInit, OnDestroy {
     this.timeoutSubscription$.unsubscribe();
     this.authSubscribption$.unsubscribe();
     this.applicationService.getAllValues();
-    // this.tokenRefreshSubscription$.unsubscribe();
+    // this.tokenRefreshSubscription$.unsubscribe();  
+    this.userService.cleanAuthTokenState();
+    this.userService.clearUserDetails();
   }
 
   

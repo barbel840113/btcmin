@@ -29,7 +29,8 @@ export function reducer(state = initialState, action : tokenAction.All ) : Token
     {
         case tokenAction.LOADALLTOKENINFOINTOSTORE :{
             let token = action.payload;
-            return token;
+            state.token_info = token;
+            return state;
         }
         case tokenAction.LOADTOKENINTOSTOREONLY:{
             let token = action.payload;
@@ -38,7 +39,21 @@ export function reducer(state = initialState, action : tokenAction.All ) : Token
         }
         case tokenAction.LOADUSERROLES : {
             let roles = action.payload;
-            state.userRoles.roles = roles;
+            if(state.userRoles.roles != null)
+            {
+                state.userRoles.roles = roles;
+            }           
+            return state;
+        }
+
+        case tokenAction.CLEARAUTHSTATE : {
+            state.token_info.access_token = "";
+            state.token_info.expires_in = 0;
+            state.token_info.expiration_date = "";
+            state.token_info.id_token = "";
+            state.token_info.token_type = "";
+            state.userRoles.roles = [""];
+            state.token_info.refresh_token = "";
             return state;
         }
         default:{

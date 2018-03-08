@@ -29,6 +29,16 @@ export function reducer (state = initialState, action : fromActions.All) : UserS
         case fromActions.LOADUSERNAME :{
             return { userName : action.payload, personalDetails : state.personalDetails};
         }
+
+        // clear user settings
+        case fromActions.CLEARUSERSETTINGS: {
+            state.userName = "";
+            state.personalDetails.entityProperties = [];
+            state.personalDetails.postCode = "";
+            state.personalDetails.street1 = "";
+            state.personalDetails.street2 = "";
+            return state;
+        }
         default:{
             return state;
         }

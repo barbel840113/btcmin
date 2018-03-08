@@ -9,6 +9,7 @@ import { FormGroup } from '@angular/forms/src/model';
 import { ControlBase } from '../../shared/forms/control-base';
 import { ControlTextbox } from '../../shared/forms/control-textbox';
 import * as UserStateActions from '../../state/userservice.actions';
+import * as AuthStateTokenAction from '../../state/authState.actions';
 import { Store} from '@ngrx/store';
 import { AppState } from '../../state/app.state';
 
@@ -17,13 +18,46 @@ export class UserService {
 
   public primaryAddress$: BehaviorSubject<any> = new BehaviorSubject("");
 
+  //subscribe roleusers
+  public subscribeRolesUser$: any;
   // ARRAY OF CONTROLS
   public formContorls: Array<ControlBase<any>>;
+
+  //store roles
+  public userRoles : Array<any>
+  ;
   constructor(
     private dataService: DataService,
     private store : Store<AppState> ) {
 
+      this.subscribeRolesUser$ = this.store.select(state => state.authTokenState.userRoles.roles);
+
+      this.subscribeRolesUser$.subscribe(res =>{
+        if(res != null)
+        {
+            this.userRoles = res;
+        }
+      });
+
   }
+
+  /** 
+   * Clear User Settings
+  */
+  public clearUserDetails ()
+  {
+      this.store.dispatch(new UserStateActions.ClearUserSettings());
+  }
+
+  /** 
+   * Clean Auth Token State
+  */
+  public cleanAuthTokenState()
+  {
+     // clear store
+     this.store.dispatch(new AuthStateTokenAction.ClearAuthState());
+  }
+  
 
   public getUSerSettings(): Observable<any> {
     const url = GETUSERSETTINGS;

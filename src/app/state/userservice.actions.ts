@@ -4,6 +4,15 @@ import { Action } from '@ngrx/store';
 export const LOADPERSONALDETAILS = "LOADPERSONALDETAILS";
 export const UPDATEPERSONALDETAILS = "UPDATEPERSONALDETAILS";
 export const LOADUSERNAME = "LOADUSERNMAE";
+export const CLEARUSERSETTINGS = "CLEARUSERSETTINGS";
+
+export class ClearUserSettings implements Action{
+    readonly type = CLEARUSERSETTINGS;
+    constructor()
+    {
+         
+    }
+}
 
 export class LoadPersonalDetailsAction implements Action{
    readonly type = LOADPERSONALDETAILS;
@@ -33,4 +42,4 @@ export class LoadUserName implements Action{
 
 
 
-export type All = LoadPersonalDetailsAction | UpdatePersonalDetails | LoadUserName;
+export type All = LoadPersonalDetailsAction | UpdatePersonalDetails | LoadUserName | ClearUserSettings;

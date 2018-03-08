@@ -85,8 +85,7 @@ export class AuthTokenService {
                 this.applicationService.userProfileSubscription$.next(profile);
                 this.store.dispatch(new UserActions.LoadUserName(profile['name']));
 
-                this.store.dispatch(new AuthAction.LoadAllTokenInfoIntoStore(tokenModel));
-                //this.userService.userRoleSubscription$.next(profile.role);
+                this.store.dispatch(new AuthAction.LoadAllTokenInfoIntoStore(tokens));
                 this.applicationService.profileUserContainer$.next(profile);
                 this.applicationService.tokenSubscription$.next(tokens.access_token);  
                 this.applicationService.isUserloggedSubscription$.next(true);                       

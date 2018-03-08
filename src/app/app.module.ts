@@ -6,7 +6,6 @@ import { AppComponent } from './app.component';
 import { LoginModule } from './login/login.module';
 import { routes } from './app.routes';
 import { MainModule } from './main/main.module';
-import { AppService } from './app.service';
 import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
 import { ServicesModule } from './services/services.module';
 import { SharedModule } from './shared/shared.module';
@@ -50,8 +49,7 @@ import { resource } from 'selenium-webdriver/http';
     RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules, useHash: false, enableTracing: true })
 
   ],
-  providers: [
-    AppService,   
+  providers: [   
   ],
   entryComponents: [LoadingbarComponent],
 
