@@ -28,6 +28,7 @@ import {FlexLayoutModule} from "@angular/flex-layout";
 import {  DragulaModule } from 'ng2-dragula';
 import { PersonalDetailsComponent } from './settings/personal-details/personal-details.component';
 import { UserService } from '../services/users/user.service';
+import { Tier1Component } from './settings/tier1/tier1.component';
 
 @NgModule({
   imports: [
@@ -50,7 +51,8 @@ import { UserService } from '../services/users/user.service';
     TransactionsComponent,
     BusinessUnitComponent,
     UserOverviewComponent,
-    PersonalDetailsComponent
+    PersonalDetailsComponent,
+    Tier1Component
   ],
   exports: [
     MainComponent,

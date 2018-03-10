@@ -1,5 +1,5 @@
 <div class="flex-container" fxLayoutGap="10px" fullscreen>
-  <div class="item item-1" fxFlex="50%">
+  <div class="item item-1" fxFlex="100%">
       <mat-card>
           <mat-card-title>User Personal Settings</mat-card-title>
           <mat-card-content>
@@ -10,16 +10,19 @@
                           
                       </app-personal-details>
                   </mat-tab>
-                  <mat-tab label="Tab 2">Content 2</mat-tab>
+                  <mat-tab label="Tier 1">
+                    <!-- tier1 model -->
+                    <app-tier1></app-tier1>
+                  </mat-tab>
                 </mat-tab-group>
           </mat-card-content>
       </mat-card>
   </div>
-  <div class="item item-2" fxFlex="30%">
+  <!-- <div class="item item-2" fxFlex="30%">
 
   </div>
   <div class="item item-3" fxFlex="20%">
  
-  </div>
+  </div> -->
 </div>
 

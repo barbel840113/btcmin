@@ -75,7 +75,7 @@ export class PersonalDetailsComponent implements OnInit, OnDestroy {
       this.controlPersonalDetails = this.settinsService.initializeControls(res['entityProperties']);
       this.perDetailsForm = this.formControlService.toControlGroup(this.controlPersonalDetails);
 
-      this.bindValueToPersonalDetailsForm(this.perDetailsForm, res);
+      this.appSetting.bindValueToPersonalDetailsForm(this.perDetailsForm, res);
 
       this.showLoadingBar = false;
       console.log(res);
@@ -88,64 +88,7 @@ export class PersonalDetailsComponent implements OnInit, OnDestroy {
   ngOnInit() {
 
   }
-
-  private bindValueToPersonalDetailsForm(form : FormGroup, data : any)
-  {
-      if(form instanceof FormGroup)
-      {
-         let keyForms = form.controls;
-
-         let resultArray = this.castReturnObjectToLowerCase(data);
-
-         data['entityProperties'].forEach(element => {
-           
-          let nameOfProperty = element['name'];
-
-          // find if the forms has property and then assign value
-            if(keyForms.hasOwnProperty(nameOfProperty))
-            {
-                let nameOfPropertyLowerCase = nameOfProperty.toLocaleLowerCase();
-
-                let result = resultArray.find(x => x.value == nameOfPropertyLowerCase);
-
-                if(result != null)
-                {
-                  if(result.hasOwnProperty('oldvalue'))
-                  {   
-                    keyForms[element.name].setValue(data[result.oldvalue]);
-                  }                  
-                }               
-            }
-         });
   
-        
-      }
-  }
-
-  /**
-   * 
-   * Result Json has randomly upper case letter
-   * Therefore we will store key and new value to compare with form
-   */
-  private castReturnObjectToLowerCase(object : any) : Array<any>
-  {
-      let properties = Object.keys(object);
-
-      let tempArray = [];
-
-      for(let i = 0 ; i < properties.length; i++)
-      {
-           if(properties[i] != "entityProperties")
-           {
-                let lowerValue = properties[i].toLocaleLowerCase();
-
-                // push value to new array
-                tempArray.push({index : i, value : lowerValue, oldvalue : properties[i]});
-           }
-      }
-
-      return tempArray;
-  }
 
   getErrorMessage() {
     return this.email.hasError('required') ? 'You must enter a value' :

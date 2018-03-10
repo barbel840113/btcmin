@@ -1,5 +1,6 @@
 import { PersonalDetailsEntity } from '../models/personal-details';
 import { AuthTokenModel } from '../models/auth-tokens.model';
+import { Tier1Details } from '../models/tier1-details';
 
 export interface AppState{
     authTokenState : TokenState;
@@ -8,6 +9,7 @@ export interface AppState{
 
 export interface UserSettingsState{
     personalDetails : PersonalDetailsEntity;
+    tier1Details :Tier1Details , 
     userName : string;
 }
 

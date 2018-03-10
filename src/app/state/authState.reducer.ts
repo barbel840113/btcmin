@@ -44,7 +44,7 @@ export function reducer(state = initialState, action : tokenAction.All ) : Token
                 state.userRoles.roles = roles;
             }           
             return state;
-        }
+        }        
 
         case tokenAction.CLEARAUTHSTATE : {
             state.token_info.access_token = "";

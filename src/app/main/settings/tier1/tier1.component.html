@@ -1,0 +1,28 @@
+<!-- Form Personal Details -->
+<div *ngIf="!this.showLoadingBar" class="container">
+  <form  class="example-container" [formGroup]="tier1SettinForm" *ngIf="this.controTier1Details.length != 0">  
+    <div *ngFor="let control of controTier1Details" [ngSwitch]="control.type">
+      <!-- checkbox -->
+        <mat-checkbox *ngSwitchCase="'checkbox'" class="example-margin" [formControlName]="control.key">{{control.label}}</mat-checkbox>
+        <label *ngSwitchDefault ></label>
+    </div>  
+      <!-- <mat-form-field >                     
+                <mat-select  [formControlName]="control.key" required *ngIf="control.type == 'checkbox'">
+                  <mat-option>-- None --</mat-option>
+                  <mat-option value="option">Option</mat-option>
+                </mat-select>
+              <input matInput *ngIf="control.type == 'textbox'" placeholder="{{control.placeholder}}" [formControlName]="control.key" type="{{control.type}}" required>
+                     
+              
+      </mat-form-field>    -->
+     
+      
+      <button mat-raised-button color="primary" (click)="this.submitTier1Details()">Submit</button>
+  </form>
+</div>
+
+<!-- Spinner while update and load data from server -->
+<div class="container" *ngIf="this.showLoadingBar">
+  <label>Loading ...</label>
+  <mat-progress-bar mode="query"></mat-progress-bar>
+</div>

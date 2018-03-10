@@ -23,10 +23,13 @@ import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { DragulaModule } from 'ng2-dragula';
 import { resource } from 'selenium-webdriver/http';
+import { EffectsModule } from '@ngrx/effects';
+import { LoadTier1 } from './state/effects/load-tier1';
+import { PersonalDetails} from './state/effects/personal-details';
 
 @NgModule({
   declarations: [
-    AppComponent,
+    AppComponent
   ],
   imports: [
     FormsModule,
@@ -42,6 +45,7 @@ import { resource } from 'selenium-webdriver/http';
     DragulaModule,
     ServicesModule.forRoot(), 
     StoreModule.forRoot(reducers ,{metaReducers}),
+    EffectsModule.forRoot([LoadTier1,PersonalDetails]),
     StoreDevtoolsModule.instrument({
       maxAge: 5
     }),

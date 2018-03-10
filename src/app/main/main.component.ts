@@ -123,8 +123,7 @@ export class MainComponent implements OnInit, OnDestroy {
     this.authSubscribption$.unsubscribe();
     this.applicationService.getAllValues();
     // this.tokenRefreshSubscription$.unsubscribe();  
-    this.userService.cleanAuthTokenState();
-    this.userService.clearUserDetails();
+
   }
 
   

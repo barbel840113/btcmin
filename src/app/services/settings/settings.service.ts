@@ -25,7 +25,7 @@ export class SettingsService {
    */
   public initializeControls(entityProperties): any {
 
-    var value;
+    let value;
     try{
        value = entityProperties;
     }
@@ -40,7 +40,7 @@ export class SettingsService {
     {
        return null;
     }
-    var tempArray = [];
+    let tempArray = [];
 
     // iterate through object properties and create control
     for(let i = 0 ; i < entityProperties.length; i++)
@@ -63,6 +63,9 @@ export class SettingsService {
                   break;
               case prop.entityProperties.DateTime:
                   control = this._formService.initializeDateTimeNewControl(name, type);
+                  break;
+              case prop.entityProperties.Boolean:
+                  control = this._formService.initializeBoolenControl(name, type);
                   break;
               default:
                   control = Array();

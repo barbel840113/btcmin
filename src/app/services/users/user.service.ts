@@ -12,6 +12,7 @@ import * as UserStateActions from '../../state/userservice.actions';
 import * as AuthStateTokenAction from '../../state/authState.actions';
 import { Store} from '@ngrx/store';
 import { AppState } from '../../state/app.state';
+import * as userActions from '../../state/userservice.actions';
 
 @Injectable()
 export class UserService {
@@ -42,6 +43,23 @@ export class UserService {
   }
 
   /** 
+   * Load Tier1 Details
+  */
+  public loadTier1Details()
+  {
+     this.store.dispatch(new userActions.LoadTier1ModelSettings())
+  }
+
+  /** 
+   * Load Personal Details
+  */
+  public loadPersonalDetails()
+  { 
+    this.store.dispatch(new userActions.LoadPersonalDetailsAction())
+  }
+
+
+  /** 
    * Clear User Settings
   */
   public clearUserDetails ()
@@ -62,26 +80,27 @@ export class UserService {
   public getUSerSettings(): Observable<any> {
     const url = GETUSERSETTINGS;
 
-    return this.dataService.get(url)
-        .catch(err => Observable.throw(err))
-        .do(res => {
-          return res
-        }).map(res =>{ return res.json()})
-        .flatMap(res =>{
+    return this.dataService.get(url);
+        // .catch(err => Observable.throw(err))
+        // .do(res => {
+        //   return res
+        // }).map(res =>{ return res.json()})
+        // .flatMap(res =>{
           
-          //check if res is ok then assing
-          let parseResult = res;
+        //   //check if res is ok then assing
+        //   let parseResult = res;
           
-          //subscribe into store
-          this.store.dispatch(new UserStateActions.LoadPersonalDetailsAction(parseResult));
-          return Observable.of(res);
-        });
+        //   //subscribe into store
+        //   this.store.dispatch(new UserStateActions.LoadPersonalDetailsAction(parseResult));
+        //   return Observable.of(res);
+        // });
   }
 
   public getAllUserSettingsValues() : Observable<any>
   {
     return Observable.forkJoin([
-      this.getUSerSettings()
+      this.getUSerSettings(),
+      this.getTier1ModelForUser()
     ]);
   }
 

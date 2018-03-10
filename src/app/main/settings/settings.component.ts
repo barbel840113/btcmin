@@ -87,6 +87,10 @@ export class SettingsComponent implements OnInit, OnDestroy {
       });
 
      this.loadSettingsValues();
+
+     //load user services
+    this.userService.loadTier1Details();
+    this.userService.loadPersonalDetails();
  
   }
 

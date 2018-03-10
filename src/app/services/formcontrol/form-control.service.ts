@@ -57,6 +57,27 @@ export class FormControlService {
     }
 
     /**
+     * Create new Form Control for Boolean
+     * @param name 
+     * @param type 
+     */
+    public initializeBoolenControl(name, type) : any{
+        let control = new ControlCheckbox({
+            key: name,
+            label: name,
+            placeholder: name,
+            value: '',
+            type: 'checkbox',
+            required: true,
+            class: '',
+            labelclass: 'form-control',
+            order: 1
+        });
+
+        return control;
+    }
+
+    /**
      * Create new Form Control for String
      */
     public initializeStringNewControl(name, type): any {
