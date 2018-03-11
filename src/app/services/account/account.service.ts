@@ -12,10 +12,19 @@ import { REGISTER} from '../../constants/url';
 import { ApplicationService } from '../application/application.service';
 //import { Adal4Service, Adal4HTTPService } from 'adal-angular4';
 import { SettingsService } from '../settings/settings.service';
+import { Store } from '@ngrx/store';
+import { AppState} from '../../state/app.state';
 
 
 @Injectable()
 export class AccountService {
+
+
+      //subscribe roles
+  public SubscribeRoles$ : Observable<any>;
+
+  //store roles
+  public UserRoles$ : any;
 
     constructor(
         public http: Http,
@@ -23,9 +32,10 @@ export class AccountService {
         public utilityService: UtilityService,
         public dateService : DataService,
         public appService :ApplicationService ,
-        public settingService : SettingsService,
-        //public service : Adal4Service,
+        public settingService : SettingsService
     ) { 
+
+      
     }
 
     public register(data: RegisterModel): Observable<Response> {
@@ -45,6 +55,7 @@ export class AccountService {
             .do(res =>{});
     }
 
+    
     
 
     public logout() {

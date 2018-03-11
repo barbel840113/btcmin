@@ -27,7 +27,7 @@ export class DialogAppService {
   public openMessageDialog(): void{
     this.messageDialogRef = this.dialog.open(MessageFormComponent ,{
       width: '250px',
-      data: ''
+      data: ''      
     });
   }
 
