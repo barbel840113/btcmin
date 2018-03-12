@@ -19,6 +19,17 @@ export class UserService {
 
   public primaryAddress$: BehaviorSubject<any> = new BehaviorSubject("");
 
+  // check if the user is admin
+  public isUserAdmin  = false;
+  
+  // check if the user is simply user
+  public isUserTier1 = false;
+  
+  //store roles
+  public UserRoles$  =  [];
+
+  public SubscribeRoles$  : Observable<any>;
+
   //subscribe roleusers
   public subscribeRolesUser$: any;
   // ARRAY OF CONTROLS
@@ -38,6 +49,41 @@ export class UserService {
         {
             this.userRoles = res;
         }
+      });
+
+      this.SubscribeRoles$ = this.store.select(state => state.authTokenState.userRoles.roles);
+
+      this.SubscribeRoles$.subscribe(res =>{
+          this.UserRoles$ = res;
+  
+          // identify if user has more then one role
+          if(this.UserRoles$ instanceof(Array))
+          {
+            let index = this.UserRoles$.findIndex(x => x == "Admin");
+            if(index != -1)
+            {
+                this.isUserAdmin = true;
+                this.isUserTier1 = false;
+                console.log("admin log on");
+            }
+            else
+            {
+                this.isUserAdmin = false;
+                this.isUserTier1  = true;
+            }
+          }
+          else
+          {
+             if(this.UserRoles$ == "Admin")
+             {
+                 this.isUserAdmin = true;
+                 this.isUserTier1 = false;
+             }
+             else{
+               this.isUserAdmin = false;
+               this.isUserTier1 = true;
+             }
+          }
       });
 
   }

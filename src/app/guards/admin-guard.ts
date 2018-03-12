@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, CanDeactivate } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
-import {  ApplicationService } from '../services/application/application.service';
-import { BusinessUnitComponent } from '../main/business-unit/business-unit.component';
+import { UserService } from '../services/users/user.service';
+import {UserOverviewComponent } from '../main/user-overview/user-overview.component';
 
 @Injectable()
-export class AdminGuardGuard implements CanActivate, CanDeactivate<BusinessUnitComponent> {
+export class AdminGuardGuard implements CanActivate, CanDeactivate<UserOverviewComponent> {
+  
   
   /**
    * 
@@ -17,20 +18,11 @@ export class AdminGuardGuard implements CanActivate, CanDeactivate<BusinessUnitC
     canDeactivate(component: any, currentRoute: ActivatedRouteSnapshot, currentState: RouterStateSnapshot, nextState?: RouterStateSnapshot): boolean | Observable<boolean> | Promise<boolean> 
     {
 
-      if(this.appService.profileUserContainer$.value != null && typeof(this.appService) !== 'undefined')
+      if(this.userService.isUserAdmin)
       {
-            let roleName = this.appService.profileUserContainer$.value.role;
-  
-            if(roleName == 'Admin')
-            {
-               return true;
-            }
-            else{
-              return false;
-            }
+          return true;
       }
-      else
-      {
+      else{
         return false;
       }
       
@@ -40,9 +32,9 @@ export class AdminGuardGuard implements CanActivate, CanDeactivate<BusinessUnitC
    * 
    * @param appService 
    */
-  constructor(private appService : ApplicationService)
+  constructor(private userService : UserService)
   {
-     
+       
   }
 
   /**
@@ -52,21 +44,12 @@ export class AdminGuardGuard implements CanActivate, CanDeactivate<BusinessUnitC
    */
   canActivate(next: ActivatedRouteSnapshot,state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
 
-    if(this.appService.profileUserContainer$.value != null && typeof(this.appService) !== 'undefined')
-    {
-          let roleName = this.appService.profileUserContainer$.value.role;
-
-          if(roleName == 'Admin')
-          {
-             return true;
-          }
-          else{
-            return false;
-          }
-    }
-    else
-    {
-      return false;
-    }
+    if(this.userService.isUserAdmin  && !this.userService.isUserTier1)
+      {
+          return true;
+      }
+      else{
+        return false;
+      }
   }
 }

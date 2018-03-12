@@ -7,6 +7,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { TransactionsComponent} from './transactions/transactions.component';
 import { BusinessUnitComponent}  from './business-unit/business-unit.component';
 import { AdminGuardGuard } from '../guards/admin-guard';
+import {NotadminGuard } from '../guards/notadmin.guard';
 import { UserOverviewComponent } from './user-overview/user-overview.component';
 
 const routes: Routes = [
@@ -15,10 +16,10 @@ const routes: Routes = [
     component: MainComponent,
     canActivate: [AuthenticationGuard],
     children: [
-       { path: 'settings', component: SettingsComponent },
+       { path: 'settings', component: SettingsComponent, canActivate : [NotadminGuard] },
        { path: '', component : DashboardComponent},
-       { path: 'dashboards', component : DashboardComponent},
-       { path: 'transactions', component:TransactionsComponent},
+       { path: 'dashboards', component : DashboardComponent, },
+       { path: 'transactions', component:TransactionsComponent, canActivate : [NotadminGuard]},
        { path: 'user-overview', component:UserOverviewComponent, canActivate: [AdminGuardGuard],canDeactivate: [AdminGuardGuard]},
        { path: 'business-unit', component: BusinessUnitComponent, canActivate: [AdminGuardGuard], canDeactivate : [AdminGuardGuard] },
     ]

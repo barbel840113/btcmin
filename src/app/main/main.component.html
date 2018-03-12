@@ -9,13 +9,13 @@
       <mat-nav-list>
          <a mat-list-item tabindex="-1" >fdsfd</a>
       </mat-nav-list>
-    <mat-nav-list *ngIf="this.isUserAdmin" >
+    <mat-nav-list *ngIf="this.userService.isUserAdmin" >
       <a *ngFor="let navItem of this.navItemsAdministrator" mat-list-item (click)="start.close()"   [routerLink]="[navItem.route]" routerLinkActive #routerLinkActiveInstance="routerLinkActive">
         {{navItem.name}}
       </a>
     </mat-nav-list>
-    <mat-nav-list *ngIf="this.isUserTier1" >
-      <a *ngFor="let navItem of this.navItemsAdministrator" mat-list-item (click)="start.close()"   [routerLink]="[navItem.route]" routerLinkActive #routerLinkActiveInstance="routerLinkActive">
+    <mat-nav-list *ngIf="this.userService.isUserTier1" >
+      <a *ngFor="let navItem of this.navItemsUser" mat-list-item (click)="start.close()"   [routerLink]="[navItem.route]" routerLinkActive #routerLinkActiveInstance="routerLinkActive">
         {{navItem.name}}
       </a>
     </mat-nav-list>

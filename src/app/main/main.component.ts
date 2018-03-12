@@ -40,7 +40,7 @@ export class MainComponent implements OnInit, OnDestroy {
   public navItemsAdministrator = [
     {name: 'Dashboard', route: '/main/dashboards'},
     {name: 'Business Units', route: '/business-unit'},
-    {name: 'User Overview', route: '/usersoverview'}
+    {name: 'User Overview', route: '/user-overview'}
   ];
 
     //navigation on side nav bar
@@ -66,15 +66,6 @@ export class MainComponent implements OnInit, OnDestroy {
 
   ///subscribe user roles
   public SubscribeRoles$ : Observable<any>;
-
-  // check if the user is admin
-  public isUserAdmin  = false;
-  
-  // check if the user is simply user
-  public isUserTier1 = false;
-
-  //store roles
-  public UserRoles$  =  [];
 
   constructor(
     public http: Http,
@@ -107,28 +98,7 @@ export class MainComponent implements OnInit, OnDestroy {
       this.timerRefresherSubject$.next(val);
       this.applicationService.getUpdateValue().subscribe();
     });
-
-    this.SubscribeRoles$ = this.store.select(state => state.authTokenState.userRoles.roles);
-
-    this.SubscribeRoles$.subscribe(res =>{
-        this.UserRoles$ = res;
-
-        let index = this.UserRoles$.findIndex(x => x == "Admin");
-        if(index != -1)
-        {
-            this.isUserAdmin = true;
-            this.isUserTier1 = false;
-            console.log("admin log on");
-        }
-        else
-        {
-            this.isUserAdmin = false;
-            this.isUserTier1  = true;
-        }
-    });
-
   }
-
 
   ngOnInit(): void {
 

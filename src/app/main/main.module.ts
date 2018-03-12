@@ -29,6 +29,8 @@ import {  DragulaModule } from 'ng2-dragula';
 import { PersonalDetailsComponent } from './settings/personal-details/personal-details.component';
 import { UserService } from '../services/users/user.service';
 import { Tier1Component } from './settings/tier1/tier1.component';
+import { AdminGuardGuard} from '../guards/admin-guard';
+import { NotadminGuard} from '../guards/notadmin.guard';
 
 @NgModule({
   imports: [
@@ -63,7 +65,7 @@ import { Tier1Component } from './settings/tier1/tier1.component';
     UserOverviewComponent,
     PersonalDetailsComponent
   ],
-  providers:[ {provide: OverlayContainer, useClass: FullscreenOverlayContainer}, UserService],
+  providers:[ {provide: OverlayContainer, useClass: FullscreenOverlayContainer}, UserService, AdminGuardGuard, NotadminGuard],
   entryComponents:[MessageFormComponent]
 })
 

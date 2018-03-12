@@ -21,7 +21,7 @@
               <mat-icon>dialpad</mat-icon>
               <span>Redial</span>
             </button>
-            <button mat-menu-item (click)="settings()">
+            <button mat-menu-item *ngIf="this._userService.isUserTier1"  (click)="settings()">
               <mat-icon>settings</mat-icon>
               <span>User Settings</span>
             </button>
