@@ -58,6 +58,10 @@ export function reducer (state = initialState, action : fromActions.All) : UserS
                 return state;
         }
 
+        case fromActions.LOADTIER1USERLISTMODEL: {
+            return state;
+        }      
+
         // load success model into store
         case fromActions.LOADTIER1MODELSUCCESS: {
                 return {

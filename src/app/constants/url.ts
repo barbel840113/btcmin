@@ -26,4 +26,5 @@ export const UPDATEPRIMARYADDRESS = HOSTAPI + 'api/AppSettings/updatepersonaldet
 export const CREATETIER1MODEL = HOSTAPI + 'api/AppSettings/createTier1Settings';
 //get tier1 model user settings
 export const GETUSERTIER1MODEL = HOSTAPI + 'api/AppSettings/getTier1Settings';
+export const GETTIER1USERLISTMODEL = HOSTAPI + '/api/UserSettings/getUserTier1List'; 
 

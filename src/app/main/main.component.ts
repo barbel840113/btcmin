@@ -17,10 +17,10 @@ import { ApplicationService } from '../services/application/application.service'
 import { ToasterModule, ToasterService } from 'angular2-toaster';
 import { AccountService } from '../services/account/account.service';
 import { AuthTokenService } from '../services/auth-token/auth-token.service';
-import {  UserService } from '../services/users/user.service';
 import { DataService } from '../services/data-service/data.service';
 import { AppState } from '../state/app.state';
 import { Store } from '@ngrx/store';
+import { UserService } from '../services/users/user.service';
 
 @Component({
   selector: 'app-main',
@@ -98,6 +98,7 @@ export class MainComponent implements OnInit, OnDestroy {
       this.timerRefresherSubject$.next(val);
       this.applicationService.getUpdateValue().subscribe();
     });
+  
   }
 
   ngOnInit(): void {

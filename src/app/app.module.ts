@@ -24,7 +24,8 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { DragulaModule } from 'ng2-dragula';
 import { resource } from 'selenium-webdriver/http';
 import { EffectsModule } from '@ngrx/effects';
-import { LoadTier1 } from './state/effects/load-tier1';
+import { LoadTier1UserList } from './state/effects/loadtier1userlist';
+import { LoadTier1} from './state/effects/loadtier1';
 import { PersonalDetails} from './state/effects/personal-details';
 
 @NgModule({
@@ -45,7 +46,7 @@ import { PersonalDetails} from './state/effects/personal-details';
     DragulaModule,
     ServicesModule.forRoot(), 
     StoreModule.forRoot(reducers ,{metaReducers}),
-    EffectsModule.forRoot([LoadTier1,PersonalDetails]),
+    EffectsModule.forRoot([LoadTier1,PersonalDetails, LoadTier1UserList]),
     StoreDevtoolsModule.instrument({
       maxAge: 5
     }),

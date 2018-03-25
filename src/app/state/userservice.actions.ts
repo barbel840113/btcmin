@@ -8,6 +8,8 @@ export const LOADUSERNAME = "LOADUSERNMAE";
 export const CLEARUSERSETTINGS = "CLEARUSERSETTINGS";
 export const LOADTIER1MODEL = "LOADTIER1MODEL";
 export const LOADTIER1MODELSUCCESS = "LOADTIER1MODELSUCCESS";
+export const LOADTIER1USERLISTMODEL =  "LOADTIER1USERLISTMODEL";
+export const LOADTIER1USERLISTSUCCESS = "LOADTIER1USERLISTSUCCESS";
 
 export class LoadTier1ModelSettings implements Action{
     readonly type = LOADTIER1MODEL;
@@ -31,6 +33,22 @@ export class ClearUserSettings implements Action{
     constructor()
     {
          
+    }
+}
+
+export class LoadUser1List implements Action{
+    readonly type = LOADTIER1USERLISTMODEL;
+    constructor()
+    {
+         
+    }
+}
+
+export class LoadUser1ListSuccessAction implements Action{
+    readonly type = LOADTIER1USERLISTSUCCESS;
+    constructor(public payload)
+    {
+         this.payload = payload;
     }
 }
 
@@ -68,5 +86,5 @@ export class LoadUserName implements Action{
 
 
 
-export type All = LoadPersonalDetailsAction | UpdatePersonalDetails 
+export type All = LoadPersonalDetailsAction | UpdatePersonalDetails | LoadUser1ListSuccessAction |  LoadUser1List|
 | LoadUserName | ClearUserSettings | LoadTier1ModelSettings | LoadTier1ModelSuccess | LoadPersonalDetailsSuccessAction;

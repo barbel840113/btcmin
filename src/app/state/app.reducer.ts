@@ -4,10 +4,12 @@ import * as authReducer from './authState.reducer';
 import { environment } from '../../environments/environment';
 import { reduce } from 'rxjs/operators/reduce';
 import * as userSettingsReducer from './userservice.reducer';
+import * as tier1userListReducer from './admin/tier1userlist.reducer';
 
 export const reducers : ActionReducerMap<AppState> = {
     authTokenState : authReducer.reducer,
-    userSettingsState: userSettingsReducer.reducer
+    userSettingsState: userSettingsReducer.reducer,
+    tier1UserListState : tier1userListReducer.reducer
 };
 
 export function logger( reducer : ActionReducer<AppState>) : ActionReducer<AppState>{

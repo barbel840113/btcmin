@@ -23,7 +23,7 @@ import { MatHelpModule } from '../mat-help/mat-help.module';
 import { BusinessUnitComponent } from './business-unit/business-unit.component';
 import { MessageFormComponent } from '../shared/message-form/message-form.component';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
-import { UserOverviewComponent } from './user-overview/user-overview.component';
+import { UserOverviewComponent } from './admin/user-overview/user-overview.component';
 import {FlexLayoutModule} from "@angular/flex-layout";
 import {  DragulaModule } from 'ng2-dragula';
 import { PersonalDetailsComponent } from './settings/personal-details/personal-details.component';

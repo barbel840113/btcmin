@@ -8,7 +8,7 @@ import { TransactionsComponent} from './transactions/transactions.component';
 import { BusinessUnitComponent}  from './business-unit/business-unit.component';
 import { AdminGuardGuard } from '../guards/admin-guard';
 import {NotadminGuard } from '../guards/notadmin.guard';
-import { UserOverviewComponent } from './user-overview/user-overview.component';
+import { UserOverviewComponent } from './admin/user-overview/user-overview.component';
 
 const routes: Routes = [
   {

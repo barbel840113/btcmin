@@ -1,7 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Observable, Subject, BehaviorSubject } from 'rxjs';
 import { ApplicationService } from '../application/application.service';
-import { GETUSERSETTINGS, UPDATEPRIMARYADDRESS, CREATETIER1MODEL, GETUSERTIER1MODEL } from '../../constants/url';
+import { 
+  GETUSERSETTINGS, UPDATEPRIMARYADDRESS, CREATETIER1MODEL, GETUSERTIER1MODEL,
+  GETTIER1USERLISTMODEL
+ } from '../../constants/url';
 import { DataService } from '../data-service/data.service';
 import { ReturnStatement } from '@angular/compiler/src/output/output_ast';
 import { FormControlService } from '../formcontrol/form-control.service';
@@ -13,6 +16,8 @@ import * as AuthStateTokenAction from '../../state/authState.actions';
 import { Store} from '@ngrx/store';
 import { AppState } from '../../state/app.state';
 import * as userActions from '../../state/userservice.actions';
+import * as tier1UserActions from '../../state/admin/tier1userlist.actions';
+import {initialState } from '../../state/admin/tier1userlist.reducer';
 
 @Injectable()
 export class UserService {
@@ -93,7 +98,7 @@ export class UserService {
   */
   public loadTier1Details()
   {
-     this.store.dispatch(new userActions.LoadTier1ModelSettings())
+     this.store.dispatch(new userActions.LoadTier1ModelSettings());
   }
 
   /** 
@@ -101,7 +106,22 @@ export class UserService {
   */
   public loadPersonalDetails()
   { 
-    this.store.dispatch(new userActions.LoadPersonalDetailsAction())
+    this.store.dispatch(new userActions.LoadPersonalDetailsAction());
+  }
+
+  /**
+   * Load Tier1 User for admin
+   */
+  public loadTier1UserList()
+  {
+    if(this.isUserAdmin)
+    {
+      this.store.dispatch( new tier1UserActions.LoadUser1List());
+    }
+    else{
+      this.store.dispatch( new tier1UserActions.LoadUser1ListSuccessAction(initialState));
+    }
+   
   }
 
 
@@ -121,7 +141,15 @@ export class UserService {
      // clear store
      this.store.dispatch(new AuthStateTokenAction.ClearAuthState());
   }
-  
+
+  /**
+   * Load All Tier => Users
+   */
+  public loadTierUserList()
+  {
+     // load tier1 => user list
+      this.loadTier1UserList();
+  } 
 
   public getUSerSettings(): Observable<any> {
     const url = GETUSERSETTINGS;
@@ -204,6 +232,12 @@ export class UserService {
   public getTier1ModelForUser() : Observable<any>
   {
       const url = GETUSERTIER1MODEL;
+      return this.dataService.get(url);
+  }
+
+  public getTier1UserListModel() : Observable<any>
+  {
+      const url = GETTIER1USERLISTMODEL;
       return this.dataService.get(url);
   }
 }
