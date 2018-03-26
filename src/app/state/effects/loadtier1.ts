@@ -24,7 +24,7 @@ export class LoadTier1 {
     }
 
     @Effect()
-    loadTier1UserList$ : Observable<Action> = this.actions$    
+    loadTier1ModelSettings$ : Observable<Action> = this.actions$    
             .ofType(fromUserActions.LOADTIER1MODEL)
             .switchMap(() =>
                 this.userService.getTier1ModelForUser()                        

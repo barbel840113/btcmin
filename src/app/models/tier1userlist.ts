@@ -5,5 +5,6 @@ export interface Tier1UserList{
     Id : any,
     Tier1ContainerId : any,
     LastName : string,
-    FirstName  : string    
+    FirstName  : string,
+    Email : string   
 }

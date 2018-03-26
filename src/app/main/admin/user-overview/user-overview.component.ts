@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, Input, ChangeDetectionStrategy, ChangeDetectorRef, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild, Input, ChangeDetectionStrategy, ChangeDetectorRef, ViewEncapsulation } from '@angular/core';
 import { FormControl, Validators, FormGroup } from '@angular/forms';
 import { UserService } from '../../../services/users/user.service';
 import { FormControlService } from '../../../services/formcontrol/form-control.service';
@@ -15,6 +15,7 @@ import * as Tier1UserActions from '../../../state/admin/tier1userlist.actions';
 import * as Tier1UserReducer from '../../../state/admin/tier1userlist.reducer';
 import { Tier1UserListState } from '../../../state/app.state';
 import {MatButtonModule} from '@angular/material/button';
+import {MatTableDataSource, MatPaginator} from '@angular/material';
 import {MatSnackBar} from '@angular/material';
 
 @Component({
@@ -28,7 +29,14 @@ export class UserOverviewComponent implements OnInit {
   //subscribe value from server/state
   private tier1UserList$ : Observable<any>;
 
-  public tier1UserContainer : any;
+  public  hideID = false;
+  public dataSource : MatTableDataSource<any>;
+  public tier1UserContainer  = [];
+  public displayedColumns = ['id', 'firstname', 'lastname', 'email', 'verified','checked'];
+
+  align = 'start';
+
+  @ViewChild(MatPaginator) paginator: MatPaginator;
 
   constructor(
     private userUservice : UserService,
@@ -36,7 +44,7 @@ export class UserOverviewComponent implements OnInit {
   ) {
    
       //load tier1 user list
-      this.userUservice.loadTierUserList();
+     this.userUservice.loadTierUserList();
 
      this.tier1UserList$ = this.store.select(state => state.tier1UserListState.tier1UserList);
 
@@ -45,11 +53,21 @@ export class UserOverviewComponent implements OnInit {
         if(res)
         { 
             this.tier1UserContainer = res;
+            this.dataSource = new MatTableDataSource(this.tier1UserContainer);
         }
     });
+
+    this.dataSource = new MatTableDataSource(this.tier1UserContainer);
+   }
+
+   ngAfterViewInit()
+   {
+      this.dataSource.paginator = this.paginator;
    }
 
   ngOnInit() {
   }
+
+  
 
 }
