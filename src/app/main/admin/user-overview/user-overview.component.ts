@@ -22,7 +22,8 @@ import {MatSnackBar} from '@angular/material';
   selector: 'app-user-overview',
   templateUrl: './user-overview.component.html',
   styleUrls: ['./user-overview.component.scss'],
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class UserOverviewComponent implements OnInit {
 
@@ -31,8 +32,9 @@ export class UserOverviewComponent implements OnInit {
 
   public  hideID = false;
   public dataSource : MatTableDataSource<any>;
-  public tier1UserContainer  = [];
-  public displayedColumns = ['id', 'firstname', 'lastname', 'email', 'verified','checked'];
+  private tier1UserContainer  = [];
+  public tier1UserVMContainer = [];
+  public displayedColumns = ['firstName', 'lastName', 'email', 'verified','checked'];
 
   align = 'start';
 
@@ -40,7 +42,8 @@ export class UserOverviewComponent implements OnInit {
 
   constructor(
     private userUservice : UserService,
-    private store: Store<AppState>
+    private store: Store<AppState>,
+    private cd : ChangeDetectorRef
   ) {
    
       //load tier1 user list
@@ -53,11 +56,20 @@ export class UserOverviewComponent implements OnInit {
         if(res)
         { 
             this.tier1UserContainer = res;
-            this.dataSource = new MatTableDataSource(this.tier1UserContainer);
+
+            //modify fields 
+            this.generateVMModelTier1User(this.tier1UserContainer,this.tier1UserVMContainer, this.displayedColumns);
+
+            this.dataSource = new MatTableDataSource(this.tier1UserVMContainer);
+
+            //refresh
+            this.cd.markForCheck();
         }
     });
 
-    this.dataSource = new MatTableDataSource(this.tier1UserContainer);
+    this.dataSource = new MatTableDataSource(this.tier1UserVMContainer);
+
+    this.cd.markForCheck();
    }
 
    ngAfterViewInit()
@@ -66,6 +78,41 @@ export class UserOverviewComponent implements OnInit {
    }
 
   ngOnInit() {
+  }
+
+  /**
+   * 
+   * @param obj array of values
+   * @param params list of properties include in view model
+   * @param vmObj new generate vm models based on model and list properties pass through
+   */
+  private generateVMModelTier1User(obj, vmObj, params)
+  {
+       if (obj instanceof Array)
+       {
+           if(obj.length != 0)
+           {
+               //iterate through array and get object 
+               // compare and then generate vm property if apply
+                for(let i =0 ; i < obj.length; i++)
+                {
+                  let temObject = {};
+                   //iterate through properties and copy over
+                   for(let j = 0; j < params.length; j++)
+                   {
+                       if(obj[i].hasOwnProperty(params[j]))
+                       {
+                         // store property in new object
+                            temObject[params[j]] = obj[i][params[j]] ;                           
+                           
+                       }
+                   }
+
+                   // store ir 
+                   this.tier1UserVMContainer.push(temObject);
+                }
+           }
+       }
   }
 
   
