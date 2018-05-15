@@ -4,17 +4,14 @@ import {
 } from '@angular/core';
 import { OverlayContainer } from '@angular/cdk/overlay';
 import { Observable } from 'rxjs/Rx';
-import { Subscription } from 'rxjs/Subscription';
-import { Http, Response } from '@angular/http';
-import { Subject } from 'rxjs/Subject';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { Subscription ,  Subject ,  BehaviorSubject } from 'rxjs';
+import { Response, Http } from '@angular/http';
 import { LoginModel } from '../models/login.model';
 import { ProfileModel } from '../models/profile-model';
 import { Title } from '@angular/platform-browser';
 import { HeaderAdminComponent } from '../shared/header-admin/header-admin.component';
 import { NavbarAdminComponent } from '../shared/navbar-admin/navbar-admin.component';
 import { ApplicationService } from '../services/application/application.service';
-import { ToasterModule, ToasterService } from 'angular2-toaster';
 import { AccountService } from '../services/account/account.service';
 import { AuthTokenService } from '../services/auth-token/auth-token.service';
 import { DataService } from '../services/data-service/data.service';
@@ -72,7 +69,6 @@ export class MainComponent implements OnInit, OnDestroy {
     public titleService: Title,
     public tokens: AuthTokenService,
     public applicationService: ApplicationService,
-    public toasterService: ToasterService,
     public cd: ChangeDetectorRef,
     public vcRef: ViewContainerRef,
     private dataService : DataService,

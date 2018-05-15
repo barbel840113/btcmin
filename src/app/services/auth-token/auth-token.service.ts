@@ -1,13 +1,13 @@
+
+import {throwError as observableThrowError,  Subscription ,  Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { Response, Headers, RequestOptions, Http } from '@angular/http';
-import { JwtHelper } from 'angular2-jwt';
-import { Subscription } from 'rxjs/Subscription';
-import { Observable } from 'rxjs/Observable';
+import { JwtHelperService } from '@auth0/angular-jwt';
 import { ProfileModel } from '../../models/profile-model';
 import { LoginModel } from '../../models/login.model';
 import { RefreshGrantModel } from '../../models/refresh-grant-model';
 import { AuthTokenModel } from '../../models/auth-tokens.model';
-import 'rxjs/add/operator/toPromise';
+
 import 'rxjs/Subject';
 import 'rxjs/BehaviorSubject';
 import 'rxjs/Observable';
@@ -25,7 +25,7 @@ import * as UserActions from '../../state/userservice.actions';
 @Injectable()
 export class AuthTokenService {
     public refreshSubscription$: Subscription;
-    public jwtHelper: JwtHelper = new JwtHelper();
+    public jwtHelper: JwtHelperService = new JwtHelperService();
     public isUserExternalLoggin : boolean = false;
 
     //config for post token
@@ -135,7 +135,7 @@ export class AuthTokenService {
                         // let the app know that we cant refresh the token
                         // which means something is invalid and they aren't logged in
                        
-                        return Observable.throw('Session Expired');
+                        return observableThrowError('Session Expired');
                     });
             });
     }
@@ -148,7 +148,7 @@ export class AuthTokenService {
                 // check if the token is even if localStorage, if it isn't tell them it's not and return
                 if (!tokens) {
                    
-                    return Observable.throw('No token in Storage');
+                    return observableThrowError('No token in Storage');
                 }
                this.applicationService.authTokensSubscription$.next(tokens);
 
@@ -157,7 +157,8 @@ export class AuthTokenService {
                     // grab the profile out so we can store it
                     const profile: ProfileModel = this.jwtHelper.decodeToken(tokens.id_token);
                     this.applicationService.profileUserContainer$.next(profile);
-
+                    let time = this.jwtHelper.getTokenExpirationDate(tokens.expiration_date);
+                    console.log(time);
                     this.applicationService.isUserloggedSubscription$.next(true);
                 }
 
@@ -168,7 +169,7 @@ export class AuthTokenService {
             })
             .catch(error => {
                 this.applicationService.isUserloggedSubscription$.next(false);
-                return Observable.throw(error);
+                return observableThrowError(error);
             });
     }
 

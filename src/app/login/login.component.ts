@@ -1,7 +1,6 @@
 import { Component, OnInit, ViewContainerRef, ChangeDetectorRef, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
-import {NgProgressService} from "ng2-progressbar";
-import {Subscription} from 'rxjs';
+import {Subscription,  Observable,  Subject,  BehaviorSubject } from 'rxjs';
 import { ControlBase } from '../shared/forms/control-base';
 import { ControlTextbox } from '../shared/forms/control-textbox';
 import { LoginModel } from '../models/login.model';
@@ -11,14 +10,10 @@ import { FormGroup, FormBuilder, FormControl, FormArray } from '@angular/forms';
 import { UtilityService } from '../services/utility/utility.service';
 import { FormControlService} from '../services/formcontrol/form-control.service';
 import { LoginSpinningBarModalComponent } from '../modals/login-spinning-bar-modal/login-spinning-bar-modal.component';
-import {ToasterModule, ToasterService} from 'angular2-toaster';
 // import the required animation functions from the angular animations module
 import { trigger, state, animate, transition, style } from '@angular/animations';
 import { LoadingbarComponent } from '../shared/loadingbar/loadingbar.component';
 import { routerTransition } from '../router.animations';
-import { Observable} from 'rxjs/Observable';
-import { Subject} from 'rxjs/Subject';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import {MatSnackBar} from '@angular/material';
 import { AuthTokenService } from '../services/auth-token/auth-token.service';
 import { DialogAppService } from '../services/dialogModal/dialogModal.service';
@@ -57,7 +52,6 @@ export class LoginComponent implements OnInit {
     public formControlService : FormControlService,
     public utilityService: UtilityService,
     public _router :Router,
-    public toasterService: ToasterService,
     public  vcRef  : ViewContainerRef,
     public authService :AuthTokenService,
     public snackBar: MatSnackBar,

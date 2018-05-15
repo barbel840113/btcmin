@@ -1,7 +1,7 @@
 import { NgModule, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Title } from '@angular/platform-browser';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { MainRoutingModule } from './main-routing.module';
 import { MainComponent } from './main.component';
 import { HttpModule, JsonpModule } from '@angular/http';
@@ -25,7 +25,6 @@ import { MessageFormComponent } from '../shared/message-form/message-form.compon
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { UserOverviewComponent } from './admin/user-overview/user-overview.component';
 import {FlexLayoutModule} from "@angular/flex-layout";
-import {  DragulaModule } from 'ng2-dragula';
 import { PersonalDetailsComponent } from './settings/personal-details/personal-details.component';
 import { UserService } from '../services/users/user.service';
 import { Tier1Component } from './settings/tier1/tier1.component';
@@ -42,7 +41,6 @@ import { NotadminGuard} from '../guards/notadmin.guard';
     PipesModule,
     FlexLayoutModule,
     MatHelpModule,
-    DragulaModule,
     NgxDatatableModule
   //  SidebarModule.forRoot(),
   ],

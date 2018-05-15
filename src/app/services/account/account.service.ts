@@ -1,3 +1,5 @@
+
+import {throwError as observableThrowError,  Subscription ,  Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { RegisterModel } from '../../models/register-model';
 import { LoginModel } from '../../models/login.model';
@@ -5,9 +7,7 @@ import { AuthTokenService } from '../auth-token/auth-token.service';
 import { UtilityService } from '../utility/utility.service';
 import { DataService } from '../data-service/data.service';
 import { Response, Headers, RequestOptions, Http } from '@angular/http';
-import { JwtHelper } from 'angular2-jwt';
-import { Subscription } from 'rxjs/Subscription';
-import { Observable } from 'rxjs/Observable';
+import { JwtHelperService } from '@auth0/angular-jwt';
 import { REGISTER} from '../../constants/url';
 import { ApplicationService } from '../application/application.service';
 //import { Adal4Service, Adal4HTTPService } from 'adal-angular4';
@@ -45,13 +45,13 @@ export class AccountService {
         const options = new RequestOptions({ headers });
 
         return this.http.post(REGISTER, data,options)
-            .catch(res => Observable.throw(res.json()))
+            .catch(res => observableThrowError(res.json()))
             .do(res => {console.log('User created ' + res)});
     }
 
     public login(user: LoginModel) {
         return this.authTokens.getTokens(user, 'password')
-            .catch(res => Observable.throw(res))
+            .catch(res => observableThrowError(res))
             .do(res =>{});
     }
 

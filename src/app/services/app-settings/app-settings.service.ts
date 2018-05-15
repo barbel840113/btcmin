@@ -1,8 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable} from 'rxjs/Observable';
-import { Subject} from 'rxjs/Subject';
-import {Subscription} from 'rxjs/Subscription';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { Observable,  Subject, Subscription,  BehaviorSubject } from 'rxjs';
 import { KRAKENCURRENCY, BTCSTAMPUSD, GETUSERNAME, ADMIN_URL} from '../../constants/url';
 import {  DataService } from '../data-service/data.service';
 import {UPDATEUSERSETTINGS, CREATEBUSINESSUNIT } from '../../constants/url';

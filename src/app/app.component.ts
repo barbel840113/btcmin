@@ -3,9 +3,7 @@ import { LoadingbarComponent } from './shared/loadingbar/loadingbar.component';
 import { NgModule, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Title } from '@angular/platform-browser';
-import { Observable } from 'rxjs/Observable';
-import { HttpModule, JsonpModule } from '@angular/http';
-
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-root',

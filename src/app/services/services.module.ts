@@ -16,7 +16,6 @@ import { TransactionsService} from '../main/transactions/services/transactions.s
 import {  FormControlService } from './formcontrol/form-control.service';
 import { BaseRequestOptions, Http } from "@angular/http";
 import { DialogAppService } from './dialogModal/dialogModal.service';
-import { HttpModule } from '@angular/http';
 import { AdminGuardGuard } from '../guards/admin-guard';
 import { AppSettingsService } from './app-settings/app-settings.service';
 import { BusinessUnitService } from './business-unit/business-unit.service';

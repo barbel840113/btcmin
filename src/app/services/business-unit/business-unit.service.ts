@@ -1,5 +1,6 @@
+
+import {throwError as observableThrowError,  BehaviorSubject, Subject, Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Subject, Observable } from 'rxjs';
 import { DataService } from '../data-service/data.service';
 import { GETBUSINESSUNIT, CREATEBUSINESSUNIT } from '../../constants/url';
 import {  BusinessUnit } from '../../main/business-unit/business-unit-model';
@@ -40,7 +41,7 @@ export class BusinessUnitService {
   {
       const url = CREATEBUSINESSUNIT; 
       return this.dataService.post(url,model)
-        .catch(error => Observable.throw(error));
+        .catch(error => observableThrowError(error));
   }
 
 }

@@ -3,15 +3,13 @@ import { FormGroup, FormBuilder, FormControl, FormArray, Validators } from '@ang
 import { SettingsService } from '../../services/settings/settings.service';
 import { routerTransition } from '../../router.animations';
 import { ApplicationService } from '../../services/application/application.service';
-import { Subscription } from 'rxjs';
+import { Subscription ,  Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { ControlBase } from '../../shared/forms/control-base';
 import { ControlTextbox } from '../../shared/forms/control-textbox';
 import { FormControlService } from '../../services/formcontrol/form-control.service';
-import { ToasterModule, ToasterService } from 'angular2-toaster';
 import { UserService } from '../../services/users/user.service';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs/Observable';
 import * as PersonalDetailsStoreActions from '../../state/userservice.actions';
 import { AppState, UserSettingsState } from '../../state/app.state';
 import { State } from '@ngrx/store/src/state';
@@ -70,7 +68,6 @@ export class SettingsComponent implements OnInit, OnDestroy {
   constructor(
     private _settingsSettings: SettingsService,
     private _applicationService: ApplicationService,
-    private _toastService: ToasterService,
     private router: Router,
     private formBuilder: FormBuilder,
     private cd: ChangeDetectorRef,
@@ -83,7 +80,7 @@ export class SettingsComponent implements OnInit, OnDestroy {
         this.username = result;
         this.cd.markForCheck();
       }, (error: any) => {
-        this._toastService.pop('error', 'BTCApp Error', error);
+        
       });
 
      this.loadSettingsValues();
@@ -101,7 +98,7 @@ export class SettingsComponent implements OnInit, OnDestroy {
     //update First Name and Last Name in the future any value
     this._applicationService.updateUserSettings(this.settingsForm.value).subscribe(
       (result) => {
-        this._toastService.pop("success", "The User Information has been updated", "");
+       
       },
       (error: any) => { }
     );

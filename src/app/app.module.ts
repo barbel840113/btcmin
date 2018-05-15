@@ -10,7 +10,6 @@ import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
 import { ServicesModule } from './services/services.module';
 import { SharedModule } from './shared/shared.module';
 import { BaseRequestOptions, Http } from "@angular/http";
-import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { LoadingbarComponent } from './shared/loadingbar/loadingbar.component';
 import { PipesModule  } from './pipes/pipes.module';
 import {NoopAnimationsModule} from '@angular/platform-browser/animations';
@@ -21,7 +20,6 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { reducers, metaReducers, logger } from './state/app.reducer';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { DragulaModule } from 'ng2-dragula';
 import { resource } from 'selenium-webdriver/http';
 import { EffectsModule } from '@ngrx/effects';
 import { LoadTier1UserList } from './state/effects/loadtier1userlist';
@@ -43,7 +41,6 @@ import { PersonalDetails} from './state/effects/personal-details';
     MatInputModule,
     NoopAnimationsModule,
     HttpModule,
-    DragulaModule,
     ServicesModule.forRoot(), 
     StoreModule.forRoot(reducers ,{metaReducers}),
     EffectsModule.forRoot([LoadTier1,PersonalDetails, LoadTier1UserList]),

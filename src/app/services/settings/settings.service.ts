@@ -3,11 +3,8 @@ import { ControlBase } from '../../shared/forms/control-base';
 import { ControlTextbox } from '../../shared/forms/control-textbox';
 import { FormControlService } from '../../services/formcontrol/form-control.service';
 import { GETUSERSETTINGINFORMATION,CREATENEWBITCOINADDRESS, GETBITCIONADDRESSFORUSER } from '../../constants/url';
-import { Observable} from 'rxjs/Observable';
-import { Subject} from 'rxjs/Subject';
-import {Subscription} from 'rxjs/Subscription';
+import { Observable,  Subject, Subscription,  BehaviorSubject } from 'rxjs';
 import {  DataService } from '../data-service/data.service';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import * as prop from '../../constants/properties';
 import { ApplicationService } from '../application/application.service';
 

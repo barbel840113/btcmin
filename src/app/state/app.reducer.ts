@@ -2,7 +2,7 @@ import { ActionReducerMap, ActionReducer, MetaReducer } from '@ngrx/store';
 import { AppState } from './app.state';
 import * as authReducer from './authState.reducer';
 import { environment } from '../../environments/environment';
-import { reduce } from 'rxjs/operators/reduce';
+import { reduce } from 'rxjs/operators';
 import * as userSettingsReducer from './userservice.reducer';
 import * as tier1userListReducer from './admin/tier1userlist.reducer';
 

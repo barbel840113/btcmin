@@ -1,3 +1,5 @@
+
+import {throwError as observableThrowError,  Observable ,  Subject } from 'rxjs';
 // https://blog.sstorie.com/adapting-ben-nadels-apigateway-to-pure-typescript/
 // My updates are mostly adapting it for Typescript:
 //  1. Importing required modules
@@ -6,8 +8,6 @@
 
 import { Injectable } from '@angular/core';
 import { Http, Response, RequestOptions, RequestMethod, URLSearchParams } from '@angular/http';
-import { Observable } from 'rxjs/Observable';
-import { Subject } from 'rxjs/Subject';
 import { AuthTokenService } from '../auth-token/auth-token.service';
 import { UtilityService } from '../utility/utility.service';
 import { DataServiceOptions } from './data.service.options';
@@ -110,11 +110,11 @@ export class DataService {
 
         const stream = this.http.request(options.url, requestOptions)
             .catch((error: any) => {
-                return Observable.throw(error);
+                return observableThrowError(error);
             })
                     
             .catch((error: any) => {
-                return Observable.throw(error);
+                return observableThrowError(error);
             })
             .finally(() => {
                 this.pendingCommandsSubject.next(--this.pendingCommandCount);

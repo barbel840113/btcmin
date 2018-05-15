@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { AuthenticationService } from '../services/authentication/authentication.service';
 import { AccountService } from '../services/account/account.service';
 import { UtilityService } from '../services/utility/utility.service';
@@ -17,9 +17,7 @@ export class AuthenticationGuard implements CanActivate {
   constructor(
      public router: Router,    //Router
      public authService : AuthenticationService, //Authetnication Service
-     public utlityService : UtilityService,     
-     //public service: Adal4Service, 
-     //public http: Adal4HTTPService,
+     public utlityService : UtilityService,    
      public authTokenService : AuthTokenService,
      public applicationService : ApplicationService
   ) {

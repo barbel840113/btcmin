@@ -8,7 +8,6 @@ import { FormControlService } from '../../services/formcontrol/form-control.serv
 import { AccountService } from '../../services/account/account.service';
 import { RegisterModel } from '../../models/register-model';
 import { LoginSpinningBarModalComponent } from '../../modals/login-spinning-bar-modal/login-spinning-bar-modal.component';
-import {ToasterModule, ToasterService} from 'angular2-toaster';
 // import the required animation functions from the angular animations module
 import { trigger, state, animate, transition, style } from '@angular/animations';
 import { routerTransition } from '../../router.animations';

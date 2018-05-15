@@ -14,7 +14,7 @@ import { Store , StoreModule} from '@ngrx/store';
 import { NavbarAdminComponent } from './shared/navbar-admin/navbar-admin.component';
 import { HeaderAdminComponent} from './shared/header-admin/header-admin.component';
 import { FormGroup, FormBuilder,FormsModule, FormControl, FormArray, ReactiveFormsModule } from '@angular/forms';
-import { HttpModule, Response, RequestOptions, RequestMethod, URLSearchParams } from '@angular/http';
+import {  HttpModule, Response, RequestOptions, RequestMethod, URLSearchParams } from '@angular/http';
 import {ServicesModule } from './services/services.module';
 import { logger } from './state/app.reducer';
 import { reducers, metaReducers } from './state/app.reducer';

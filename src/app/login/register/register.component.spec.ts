@@ -3,7 +3,6 @@ import { LoginModule } from '../login.module';
 import { RegisterComponent } from './register.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { SharedModule } from '../../shared/shared.module';
-import { ToasterModule, ToasterService } from 'angular2-toaster';
 import { RouterTestingModule } from "@angular/router/testing";
 import { Router } from "@angular/router";
 import { routes } from '../../app.routes';
@@ -29,7 +28,6 @@ describe('RegisterComponent', () => {
         FormsModule,
         LoginModule,
         RouterTestingModule.withRoutes(routes),
-        ToasterModule,
         SharedModule,
         BrowserAnimationsModule,
         ServicesModule.forRoot(),

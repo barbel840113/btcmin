@@ -5,13 +5,10 @@ import { LoginComponent } from './login.component';
 import { SharedModule} from '../shared/shared.module';
 import { ReactiveFormsModule, FormsModule} from '@angular/forms';
 import { LoginDetailsComponent} from './login-details/login-details.component';
-import { NgProgressModule } from 'ng2-progressbar';
-import { CoolLoadingIndicatorModule } from 'angular2-cool-loading-indicator';
 import {LoadingbarComponent} from '../shared/loadingbar/loadingbar.component';
-import { Http } from '@angular/http';
+import { HttpModule } from '@angular/http';
 import { LoginSpinningBarModalComponent } from '../modals/login-spinning-bar-modal/login-spinning-bar-modal.component';
 import { RegisterComponent } from './register/register.component';
-import {ToasterModule, ToasterService} from 'angular2-toaster';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatCardModule} from '@angular/material';
 import {MatButtonModule} from '@angular/material';
@@ -29,7 +26,6 @@ import {MatSnackBarModule} from '@angular/material';
     LoginRoutingModule,
     SharedModule,
     FormsModule,    
-    ToasterModule,
     ReactiveFormsModule,
     MatSnackBarModule,
     MatCardModule,

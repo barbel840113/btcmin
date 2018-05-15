@@ -1,8 +1,6 @@
+
+import {throwError as observableThrowError,  Observable,  Subject, Subscription,  BehaviorSubject } from 'rxjs';
 import { Injectable } from '@angular/core';
-import { Observable} from 'rxjs/Observable';
-import { Subject} from 'rxjs/Subject';
-import {Subscription} from 'rxjs/Subscription';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { KRAKENCURRENCY, BTCSTAMPUSD, GETUSERNAME, ADMIN_URL} from '../../constants/url';
 import {  DataService } from '../data-service/data.service';
 import {SettingsService  } from '../settings/settings.service';
@@ -58,7 +56,7 @@ export class ApplicationService {
    public getKrakenCurrency(): Observable<any>{
       let url = KRAKENCURRENCY;
       return this.dataService.get(url)
-      .catch(res => Observable.throw(res))
+      .catch(res => observableThrowError(res))
       .do(res => {
         if(res != null)
         {
@@ -81,7 +79,7 @@ export class ApplicationService {
    {
      let url  = ADMIN_URL;
      return this.dataService.get(url)
-       .catch(res => Observable.throw(res))
+       .catch(res => observableThrowError(res))
        .do(res =>{});
    }
 
@@ -90,7 +88,7 @@ export class ApplicationService {
    {
        let url = BTCSTAMPUSD;
       return this.dataService.get(url)
-      .catch(res => Observable.throw(res))
+      .catch(res => observableThrowError(res))
       .do(res => {
          if(res != null)
          {

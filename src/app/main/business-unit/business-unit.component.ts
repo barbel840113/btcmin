@@ -7,17 +7,15 @@ import { DialogAppService } from '../../services/dialogModal/dialogModal.service
 import { AppSettingsService } from '../../services/app-settings/app-settings.service';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { DataSource } from '@angular/cdk/collections';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/startWith';
-import 'rxjs/add/observable/merge';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/debounceTime';
-import 'rxjs/add/operator/distinctUntilChanged';
-import 'rxjs/add/observable/fromEvent';
+import { BehaviorSubject ,  Observable } from 'rxjs';
+
+
+
+
+
+
 import { BusinessUnitService } from '../../services/business-unit/business-unit.service';
 import { BusinessUnit } from './business-unit-model';
-import { DragulaService } from 'ng2-dragula';
 
 import * as d3 from "d3";
 
@@ -109,25 +107,9 @@ export class BusinessUnitComponent implements OnInit {
     public appSettingsService: AppSettingsService,
     public dialogService: DialogAppService,
     public businessUnitService: BusinessUnitService,
-    public dragulaService: DragulaService
   ) {
 
-    dragulaService.drag.subscribe((value) => {
-      console.log(`drag: ${value[0]}`);
-      this.onDrag(value.slice(1));
-    });
-    dragulaService.drop.subscribe((value) => {
-      console.log(`drop: ${value[0]}`);
-      this.onDrop(value.slice(1));
-    });
-    dragulaService.over.subscribe((value) => {
-      console.log(`over: ${value[0]}`);
-      this.onOver(value.slice(1));
-    });
-    dragulaService.out.subscribe((value) => {
-      console.log(`out: ${value[0]}`);
-      this.onOut(value.slice(1));
-    });
+ 
   }
 
   ngOnInit() {
